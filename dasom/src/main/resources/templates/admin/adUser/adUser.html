@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원 관리</title>
+    <link rel="stylesheet" href="/css/arrow.css" />
+    <link rel="stylesheet" href="/css/button.css" />
+    <link rel="stylesheet" href="/css/adMember.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- 좌측 어사이드 -->
+      <aside>
+        <div class="aside-spacing"></div>
+        <section class="member">
+          <a class="member-a" href="/admin/adUser">
+            <div class="member-text">회원관리</div>
+          </a>
+        </section>
+        <section class="board-mate">
+          <a class="board-mate-a" href="/admin/adDonationList">
+            <div class="board-mate-text">후원금리스트</div>
+          </a>
+        </section>
+        <section class="board-free">
+          <a class="board-free-a" href="/admin/adDonation">
+            <div class="board-free-text">후원 글 관리</div>
+          </a>
+        </section>
+        <section class="board-qna">
+          <a class="board-qna-a" href="/admin/adCs">
+            <div class="board-qna-text">봉사 글 관리</div>
+          </a>
+        </section>
+        <section class="board-logout">
+          <a class="board-logout-a" href="/admin/logout">
+            <div class="board-logout-text">로그아웃</div>
+          </a>
+        </section>
+      </aside>
+
+      <!-- 우측 게시글 목록 창 -->
+      <main>
+        <!-- 카테고리 & 글쓰기 창 -->
+        <section class="section-top">
+          <!-- 카테고리명 - 회원관리 -->
+          <div class="section-top-category-name">
+            <div class="section-top-category-name-text">회원 관리</div>
+          </div>
+        </section>
+
+        <!-- 검색바 -->
+        <section class="section-search">
+          <form class="search-form" action="/admin/adUser" method="get">
+            <div class="search-inner">
+              <select class="search-dropdown" name="cate" th:value="${searchCate}">
+                <option value="name">이름</option>
+                <option value="id">아이디</option>
+              </select>
+              <input class="search-bar" type="text" name="keyword" th:value="${searchKeyword}" />
+              <button class="search-button" type="submit">검색</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- 회원 목록 -->
+        <section class="section-board">
+          <!-- 회원목록 컬럼 값 -->
+          <div class="section-board-top">
+            <div class="member-num">번호</div>
+            <div class="id">아이디</div>
+            <div class="name">이름</div>
+            <div class="birth">생년월일</div>
+            <div class="gender">성별</div>
+            <div class="join-date">가입일</div>
+            <div class="empty"></div>
+          </div>
+
+          <!-- 회원목록 데이터값 -->
+          <div th:each="user : ${userList}"
+            class="section-board-bottom">
+            <div class="member-num" th:text="${user.userNumber}">1</div>
+            <div class="id onclick" th:text="${user.userId}" th:onclick="|location.href='@{/adUser/detail(userNumber=${user.userNumber})}'|">abb60455</div>
+            <div class="name onclick" th:text="${user.userName}" th:onclick="|location.href='@{/adUser/detail(userNumber=${user.userNumber})}'|">이우진</div>
+            <div class="birth"
+            th:text="${user.userBirthYear}+'.'+${user.userBirthMonth}+'.'+${user.userBirthDay}"
+            >1962.05.07</div>
+            <div class="gender" th:text="${user.userGender} == 'M' ? '남':'여'">남자</div>
+            <div class="join-date" th:text="${user.userJoinDate}">23.02.10</div>
+            <div class="execute">
+              <button class="btnred2" th:attr="data-userNumber=${user.userNumber}"
+                      onclick="deleteUser(this.getAttribute('data-userNumber'))">회원탈퇴</button>
+            </div>
+          </div>
+          <div class="noResult-text" th:if="${#lists.isEmpty(userList)}">
+            <h3>일치하는 검색결과가 없습니다</h3>
+          </div>
+        </section>
+
+        <!-- 페이징  -->
+        <section class="section-paging">
+          <div class="page_wrap">
+            <div class="page_nation">
+              <!-- 이전 페이지 링크 -->
+              <a th:href="@{'/admin/adUser?page=' + ${pageInfo.startPage-1} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}}"
+                 class="arrow prev" th:if="${pageInfo.prev}">&lt;</a>
+
+              <!-- 페이지 번호 순환 출력 -->
+              <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+                <a th:href="'/admin/adUser?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="active"
+                   th:text="${i}" th:if="${i != pageInfo.criteria.page}"></a>
+                <a th:href="'/admin/adUser?page=' + ${i} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}" class="activeNow"
+                   th:text="${i}" th:unless="${i != pageInfo.criteria.page}"></a>
+              </th:block>
+
+              <!-- 다음 페이지 링크 -->
+              <a th:href="@{'/admin/adUser?page=' + ${pageInfo.endPage+1} + '&keyword=' + ${searchKeyword} + '&cate=' + ${searchCate}}"
+                 class="arrow next" th:if="${pageInfo.next}">&gt;</a>
+
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script defer src="/js/adMember.js"></script>
+  </body>
+</html>

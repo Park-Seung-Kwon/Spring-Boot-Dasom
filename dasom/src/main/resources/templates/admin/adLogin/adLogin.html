@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/adLogin.css" />
+</head>
+<body>
+
+    <!-- out:container -->
+    <div class="container">
+      <h1 class="title">관리자 로그인</h1>
+      <!-- form -->
+      <div class="form-wrap">
+        <form class="login-form" action="/admin/login" method="post">
+          <div class="form-group">
+            <label for="post-title"></label>
+            <input type="text" id="post-title" name="adminId" placeholder="아이디를 입력하세요" required/>
+            <input type="password" id="post-pw" name="adminPassword" placeholder="비밀번호를 입력하세요" required />
+          </div>
+          <!-- btn -->
+          <button type="submit" class="login-btn">로그인</button>
+        </form>
+      </div>
+    </div>
+    
+</body>
+</html>

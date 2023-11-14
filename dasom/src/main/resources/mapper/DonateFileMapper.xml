@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dasom.mapper.DonateFileMapper">
+    <insert id="insert">
+        insert into TBL_DONATEFILE (DONATEFILE_NUMBER, DONATEWRITE_NUMBER, DONATEFILE_NAME, DONATEFILE_UPLOAD_PATH,
+                                    DONATEFILE_UUID)
+        values (SEQ_DONATEFILE.NEXTVAL, #{donateWriteNumber},#{donateFileName},#{donateFileUploadPath},
+                #{donateFileUuid})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM TBL_DONATEFILE
+        WHERE DONATEWRITE_NUMBER = #{donateWriteNumber}
+    </delete>
+
+    <select id="select" resultType="donateFileDto">
+        SELECT DONATEFILE_NUMBER, DONATEWRITE_NUMBER, DONATEFILE_NAME, DONATEFILE_UPLOAD_PATH,
+               DONATEFILE_UUID
+        FROM TBL_DONATEFILE
+        WHERE DONATEWRITE_NUMBER = #{donateWriteNumber}
+    </select>
+
+</mapper>

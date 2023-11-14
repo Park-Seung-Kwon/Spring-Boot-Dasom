@@ -1,0 +1,158 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'LINESeedKR-Bd';
+}
+header{
+    height: 85px;
+    width: 1515px;
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: auto;
+    z-index: 20;
+    background: #fff;
+    border-bottom: solid rgb(245, 243, 243);
+    border-width: 2px;
+}
+.main-header-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin-left: 3%;
+}
+
+.main-header-logo{
+    margin-right: 3%;
+    margin-top: 12px;
+}
+.main-header-logo-tag{
+    margin: 0;
+}
+.main-header-logo-img{
+    width: 150px;
+    height: 60px;
+}
+.main-header-category{
+    width: 40%;
+    height: 100%;
+    margin-right: 20%;
+}
+.main-header-category-ul{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    list-style: none;
+}
+.main-header-category-list{
+    width: 20%;
+    height: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    
+    
+}
+.main-header-category-donatetag,
+.main-header-category-voltag,
+.main-header-category-emtag{
+    display: inline-flex;
+    height: 100%;
+    margin-left: 5%;
+    align-items: center;
+    text-decoration: none;
+    color: #323232;
+    
+}
+.main-header-category-donatetag:hover,
+.main-header-category-voltag:hover,
+.main-header-category-emtag:hover{
+    color: #39a14a;
+    border-bottom: solid #39a14a;
+    border-width: 3px;
+}
+.main-header-service{
+    width: 20%;
+    display: flex;
+}
+.main-header-service-login,
+.main-header-service-join{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main-header-service-login-tag:hover{
+    background-color: #39a14a;
+    border-radius: 6px;
+    color: white;
+   
+}
+.main-header-service-join-tag:hover{
+    background-color: #39a14a;
+    border-radius: 6px;
+    color: white;
+}
+.main-header-service-login{
+    margin-left: 5%;
+}
+.main-header-service-login-tag,
+.main-header-service-join-tag{
+    width: 80%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    border-radius: 6px;
+    transition: background-color 0.3s ease,color 0.3s ease;
+}
+.main-header-service-mypage,
+.main-header-service-logout{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mypage-img{
+    width: 50%;
+    height: 58%;
+}
+.main-header-service-logout-tag:hover{
+    background-color: #39a14a;
+    border-radius: 6px;
+    color: white;
+}
+.main-header-service-mypage{
+    margin-left: 5%;
+}
+.main-header-service-mypage-tag,
+.main-header-service-logout-tag{
+    width: 80%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    border-radius: 6px;
+    transition: background-color 0.3s ease,color 0.3s ease;
+}

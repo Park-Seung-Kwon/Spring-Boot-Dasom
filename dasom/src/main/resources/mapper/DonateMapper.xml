@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dasom.mapper.DonateMapper">
+    <select id="selectName" parameterType="UserDto" resultType="String">
+        select user_name
+        from tbl_users
+        where user_number = #{userNumber}
+    </select>
+
+    <insert id="insert">
+        <selectKey keyProperty="donateNumber" order="BEFORE" resultType="long">
+            select SEQ_DONATE.NEXTVAL FROM DUAL
+        </selectKey>
+        insert into TBL_DONATE (DONATE_NUMBER, user_number, donatewrite_number, DONATE_AMOUNT)
+        values (#{donateNumber},#{userNumber},#{donateWriteNumber},#{donateAmount})
+    </insert>
+</mapper>

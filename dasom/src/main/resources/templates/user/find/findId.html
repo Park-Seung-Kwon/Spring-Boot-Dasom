@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이디 찾기</title>
+    <link rel="stylesheet" href="/css/findId.css" />
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<!-- header -->
+<header class="header" th:replace="fragments/header :: header">
+</header>
+<!-- out:container -->
+<article class="find-id">
+    <div class="width">
+        <!-- pageTitle -->
+        <div class="page-title">
+            <h1 class="title">아이디/비밀번호 찾기</h1>
+
+            <!-- tab -->
+            <div class="tab">
+                <a href="/find/findId"class="aa"><span class="id-tab">아이디 찾기</span></a>
+                <a href="/find/findPassword" class="aa"><span class="pw-tab">비밀번호 찾기</span></a>
+            </div>
+        </div>
+
+        <!-- form -->
+        <div class="form-wrap">
+            <form class="find-id-form" action="findIdOk" method="post" enctype="multipart/form-data">
+                <!-- name -->
+                <div class="form-group">
+                    <label for="id-name">이름</label>
+                    <input type="text" id="id-name" name="userName" required />
+                </div>
+                <!-- phone-number -->
+                <div class="form-group">
+                    <label for="id-name">휴대전화</label>
+                    <input type="text" id="id-phnum" name="userPhone" required />
+                </div>
+                <!-- birth -->
+                <div class="form-group">
+                    <label for="id-birth">생년월일</label>
+                    <div class="birth" id="birth-info">
+                        <select class="box" id="birth-year"  name="userBirthYear">
+                            <option disabled selected>출생 연도</option>
+                        </select>
+                        <select class="box" id="birth-month" name="userBirthMonth">
+                            <option disabled selected>월</option>
+                        </select>
+                        <select class="box" id="birth-day" name="userBirthDay">
+                            <option disabled selected>일</option>
+                        </select>
+                    </div>
+                </div>
+                <!--                    -->
+                <div>
+                    <!--                    <p th:text="${userId}"></p>-->
+                    <div th:if="${userDto != null}">
+                        <!-- Display the user ID -->
+                        <p th:text="'조회된 아이디: ' + ${userDto.userId}"></p>
+                    </div>
+                    <div th:if="${userDto == null}">
+                        <!-- Display a message for no query result -->
+                        <p>조회 결과 없음</p>
+                    </div>
+                </div>
+                <!-- btn -->
+                <button type="submit" class="submit-btn">확인하기</button>
+        </form>
+        </div>
+    </div>
+</article>
+<footer class="footer" th:replace="fragments/footer :: footer"></footer>
+
+<script>
+    // '출생 연도' 셀렉트 박스 option 목록 동적 생성
+    const birthYear = document.querySelector('#birth-year')
+    // option 목록 생성 여부 확인
+    let isYearOptionExisted = false;
+    birthYear.addEventListener('focus', function () {
+        // year 목록 생성되지 않았을 때 (최초 클릭 시)
+        if(!isYearOptionExisted) {
+            isYearOptionExisted = true
+            for(var i = 1940; i <= 2023; i++) {
+                // option element 생성
+                const yearOption = document.createElement('option')
+                yearOption.setAttribute('value', i)
+                yearOption.innerText = i
+                // birthYear의 자식 요소로 추가
+                this.appendChild(yearOption);
+            }
+        }
+    });
+
+    // '출생 연도' 셀렉트 박스 option 목록 동적 생성
+    const birthMonth = document.querySelector('#birth-month')
+    // option 목록 생성 여부 확인
+    let isMonthOptionExisted = false;
+    birthMonth.addEventListener('focus', function () {
+        // month 목록 생성되지 않았을 때 (최초 클릭 시)
+        if(!isMonthOptionExisted) {
+            isMonthOptionExisted = true
+            for(var i = 1; i <= 12; i++) {
+                // option element 생성
+                const monthOption = document.createElement('option')
+                monthOption.setAttribute('value', i)
+                monthOption.innerText = i
+                // birthMonth의 자식 요소로 추가
+                this.appendChild(monthOption);
+            }
+        }
+    });
+
+    // '출생 연도' 셀렉트 박스 option 목록 동적 생성
+    const birthDay = document.querySelector('#birth-day');
+    // option 목록 생성 여부 확인
+    let isDayOptionExisted = false;
+    birthDay.addEventListener('focus', function () {
+        // month 목록 생성되지 않았을 때 (최초 클릭 시)
+        if(!isDayOptionExisted) {
+            isDayOptionExisted = true;
+            for(var i = 1; i <= 31; i++) {
+                // option element 생성
+                const dayOption = document.createElement('option');
+                dayOption.setAttribute('value', i);
+                dayOption.innerText = i;
+                // birthMonth의 자식 요소로 추가
+                this.appendChild(dayOption);
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,408 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    font-family: 'LINESeedKR-Bd';
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 520px;
+    margin-top: 240px;
+}
+.join-title{
+    font-weight: 700;
+    font-size: 34px;
+    color: #000;
+    line-height: 1.5;
+    letter-spacing: -0.34px;
+    margin-bottom: 50px;
+}
+.join-title-hr{
+    width: 520px;
+    border:2px solid #39a14a;
+    margin-bottom: 35px;
+}
+.join-name,
+.form-group,
+.join-email,
+.join-gender{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+.join-pw{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 35px;
+}
+.join-phone{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+.join-name-text,
+.join-phone-text,
+.id-birth,
+.join-id-text,
+.join-email-text,
+.join-addr-text,
+.join-pw-text,
+.join-pwck-text,
+.user-text{
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 16px;
+}
+.join-name-input,
+.join-phone-input,
+.join-pw-input,
+.join-pwck-input,
+.join-email-input{
+    width: 480px;
+    height: 60px;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000;
+    padding: 0 20px;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.join-pwck-input{
+    margin-bottom: 10px;
+}
+.join-pw-input{
+    margin-bottom: 20px;
+}
+.join-phone-btn{
+    width: 100%;
+    height: 55px;
+    background-color: #fff;
+    border: none;
+    color: #39a14a;
+    border:1px solid #39a14a;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+.join-phone-btn:hover{
+    background-color:#39a14a;
+    color: #fff;
+}
+.birth{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.box{
+    width: 32%;
+    height: 60px;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000;
+    padding: 0 20px;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+    background: #fff;
+    border-radius: 10px;
+}
+.join-id{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+.join-id-input{
+    width: 64.3%;
+    height: 60px;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000;
+    padding: 0 20px;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+    background: #fff;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+.join-id-btn{
+    width: 25%;
+    height: 60px;
+    background-color: #fff;
+    border: none;
+    color: #39a14a;
+    border:1px solid #39a14a;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.join-id-btn:hover{
+    background-color: #39a14a;
+    color: #fff;
+}
+.join-gender-text{
+    margin-bottom: 12px;
+    font-weight: 500;
+    font-size: 16px;
+}
+.join-gender-choice{
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
+.join-genderF-input,
+.join-genderM-input{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 22px;
+   
+}
+
+.join-addr{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 70px;
+}
+.join-gender-label{
+    position: relative;
+}
+.join-addr-input{
+    width: 100%;
+}
+.join-addr-postcode{
+    width: 60%;
+    height: 60px;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000;
+    padding: 0 20px;
+    border: none;
+    vertical-align: middle;
+    background: #f3f3f3;
+    border-radius: 10px;
+    margin-right: 1%;
+}
+.join-addr-btn{
+    width: 30%;
+    height: 60px;
+    background-color: #fff;
+    border: none;
+    color: #39a14a;
+    border:1px solid #39a14a;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.join-addr-btn:hover{
+    background-color: #39a14a;
+    color: #fff;
+}
+.join-addr-addr{
+    width: 92%;
+    height: 60px;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000;
+    padding: 0 20px;
+    border: none;
+    vertical-align: middle;
+    background: #f3f3f3;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+.join-addr-extra{
+    width: 43%;
+    height: 60px;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000;
+    padding: 0 20px;
+    border: none;
+    vertical-align: middle;
+    background: #f3f3f3;
+    border-radius: 10px;
+    margin-right: 1%;
+}
+.join-addr-detail{
+    width: 43%;
+    height: 60px;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000;
+    padding: 0 20px;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+    background: #fff;
+    border-radius: 10px;
+    
+}
+.join-addr-group1{
+    margin-bottom: 5px;
+}
+.join-addr-group2{
+    display: flex;
+}
+.join-termOfUse{
+    display: flex;
+    width: 100%;
+    margin-left: 2%;
+    margin-bottom: 50px;
+}
+.join-termOfUse-checkbox{
+    margin-right: 3%;
+    width: 22px;
+    height: 22px;
+    border: 1px solid black;
+    border-radius: 100%;
+    appearance: none;
+    -webkit-appearance: none; 
+    background-size:22px;
+}
+
+.join-termOfUse-checkbox:checked {
+   background-image: url(/resource/img/checkbox1.png);
+   border: none;
+}
+.join-termOfUse-text{
+    margin-right: 8%;
+    color: #777 !important;
+}
+.join-termOfUse-modal{
+    text-decoration: none;
+    color: #39a14a;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+
+/* 모달창(이용약관, 개인정보처리 방침) */
+.main-section5{
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    z-index: 12;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+}
+.modal-termOfUse{
+    display: none;
+    position: fixed;
+    background-color: #fffdfd;
+    top: 15%;
+    left: 22%;
+    z-index: 15;
+    width: 50%;
+    height: 60%;
+    padding: 1% 2%;
+    overflow-y: auto;
+    border-radius: 6px;
+    box-shadow: 3px 3px 3px gray;
+}
+.modal-termOfUse-close{
+    display: none;
+    font-size: 15px;
+    position: fixed;
+    width: 80px;
+    height: 35px;
+    background-color: #39a14a;
+    color: white;
+    top: 17%;
+    text-align: center;
+    line-height: 5vh;
+    left: 68%;
+    z-index: 16;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.modal-termOfUse-close:hover{
+    background-color: #16a729;
+}
+.join-submit-btn{
+    width: 100%;
+    height: 80px;
+    background-color: #39a14a;
+    color: #fff;
+    font-weight: 400;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 70px;
+}
+.join-submit-btn:hover{
+    background-color: #16a729;
+}
+.phone-check{
+    display: none;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+.check-group{
+    display: flex;
+    width: 100%;
+}
+.user-check-input{
+    width: 68%;
+    height: 60px;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000;
+    padding: 0 20px;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+    background: #fff;
+    border-radius: 10px;
+    margin-right: 1%;
+}
+.user-check-btn{
+    width: 23%;
+    height: 60px;
+    background-color: #39a14a;
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+.user-check-btn:hover{
+    background-color:#16a729;
+}
+.countdown{
+    display: none;
+    margin-left: 10px;
+    color: rgb(242, 49, 49);
+    font-size: 14px;
+    margin-bottom: 20px;
+}

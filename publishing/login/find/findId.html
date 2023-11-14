@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/resource/css/findId.css" />
+</head>
+<body>
+    <!-- header -->
+    <header class="header" th:replace="fragments/header :: header">
+    </header>
+    <!-- out:container -->
+    <article class="find-id">
+    <div class="width">
+        <!-- pageTitle -->
+        <div class="page-title">
+            <h1 class="title">아이디/비밀번호 찾기</h1>
+        
+        <!-- tab -->
+            <div class="tab">
+                <a><span class="id-tab">아이디 찾기</span></a>
+                <a><span class="pw-tab">비밀번호 찾기</span></a>
+            </div>
+        </div>
+    
+        <!-- form -->
+        <div class="form-wrap">
+        <form class="find-id-form" action="" method="post" enctype="multipart/form-data">
+            <!-- name -->
+            <div class="form-group">
+                <label for="id-name">이름</label>
+                <input type="text" id="id-name" name="find-id-name" required />
+            </div>
+            <!-- phone-number -->
+            <div class="form-group">
+                <label for="id-name">휴대전화</label>
+                <input type="text" id="id-phnum" name="find-id-phnum" required />
+            </div>
+            <!-- birth -->
+            <div class="form-group">
+                <label for="id-birth">생년월일</label>
+                <div class="birth" id="birth-info">
+                    <select class="box" id="birth-year">
+                        <option disabled selected>출생 연도</option>
+                    </select>
+                    <select class="box" id="birth-month">
+                        <option disabled selected>월</option>
+                    </select>
+                    <select class="box" id="birth-day">
+                        <option disabled selected>일</option>
+                    </select>
+                </div>
+            </div>
+            <!-- btn -->
+            <button type="submit" class="submit-btn">확인하기</button>
+
+
+        </div>
+        </form>
+    </div>      
+    </article>
+
+    <script>
+        // '출생 연도' 셀렉트 박스 option 목록 동적 생성
+        const birthYear = document.querySelector('#birth-year')
+        // option 목록 생성 여부 확인
+        isYearOptionExisted = false;
+        birthYear.addEventListener('focus', function () {
+        // year 목록 생성되지 않았을 때 (최초 클릭 시)
+        if(!isYearOptionExisted) {
+        isYearOptionExisted = true
+        for(var i = 1940; i <= 2022; i++) {
+        // option element 생성
+        const yearOption = document.createElement('option')
+        yearOption.setAttribute('value', i)
+        yearOption.innerText = i
+        // birthYear의 자식 요소로 추가
+        this.appendChild(yearOption);
+             }
+            }
+        });
+
+        // '출생 연도' 셀렉트 박스 option 목록 동적 생성
+        const birthMonth = document.querySelector('#birth-month')
+        // option 목록 생성 여부 확인
+        isMonthOptionExisted = false;
+        birthMonth.addEventListener('focus', function () {
+        // month 목록 생성되지 않았을 때 (최초 클릭 시)
+        if(!isMonthOptionExisted) {
+        isMonthOptionExisted = true
+        for(var i = 1; i <= 12; i++) {
+        // option element 생성
+        const monthOption = document.createElement('option')
+        monthOption.setAttribute('value', i)
+        monthOption.innerText = i
+        // birthMonth의 자식 요소로 추가
+        this.appendChild(monthOption);
+             }
+            }
+        });
+
+         // '출생 연도' 셀렉트 박스 option 목록 동적 생성
+         const birthDay = document.querySelector('#birth-day')
+        // option 목록 생성 여부 확인
+        isDayOptionExisted = false;
+        birthDay.addEventListener('focus', function () {
+        // month 목록 생성되지 않았을 때 (최초 클릭 시)
+        if(!isMonthOptionExisted) {
+        isDayOptionExisted = true
+        for(var i = 1; i <= 31; i++) {
+        // option element 생성
+        const dayOption = document.createElement('option')
+        dayOption.setAttribute('value', i)
+        dayOption.innerText = i
+        // birthMonth의 자식 요소로 추가
+        this.appendChild(dayOption);
+             }
+            }
+        });
+
+        
+    </script>
+    
+</body>
+</html>

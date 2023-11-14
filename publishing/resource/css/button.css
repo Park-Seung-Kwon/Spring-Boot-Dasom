@@ -1,0 +1,39 @@
+.btnred {
+  height: 35%;
+  width: 50%;
+  border: none;
+  font-size: 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+  background-color: tomato;
+}
+.btnred:active,
+.btnred:hover,
+.btnred:focus {
+  background: darkred;
+  outline: 0;
+}
+.btnred:disabled {
+  opacity: 0.5;
+}
+
+.btngreen {
+  height: 35%;
+  width: 50%;
+  border: none;
+  font-size: 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+  background-color: #39b54a;
+}
+.btngreen:active,
+.btngreen:hover,
+.btngreen:focus {
+  background: #16a729;
+  outline: 0;
+}
+.btngreen:disabled {
+  opacity: 0.5;
+}

@@ -1,0 +1,124 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'LINESeedKR-Bd';
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1515px;
+    margin-top: 240px;
+}
+.cs-title{
+    font-weight: 700;
+    font-size: 64px;
+    color: #000;
+    line-height: 1.19;
+    letter-spacing: -0.64px;
+    margin-bottom: 130px;
+}
+.cs-section{
+    display: flex;
+}
+.donate-article{
+    width: 260px;
+    margin-top: 70px;
+}
+.article-list{
+    list-style: none;
+}
+.article-donate,
+.article-cs,
+.article-user{
+    margin-bottom: 25px;
+}
+.article-donate-tag,
+.article-cs-tag,
+.article-user-tag{
+    display: flex;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 20px;
+    color: #000;
+}
+.article-donate-tag:hover,
+.article-cs-tag:hover,
+.article-user-tag:hover{
+    color: #39a14a;
+}
+.article-donate-text{
+    margin-right: 100px;
+}
+.article-cs-text,
+.article-user-text{
+    margin-right: 135px;
+}
+.cs-part{
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 70px;
+}
+
+.cs-list-category{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    list-style: none;
+    border: 1px solid #16a729;
+    border-radius: 10px;
+    text-align: center;
+    color: #838181;
+}
+.category-num,
+.list-num{
+    width: 15%;
+}
+.category-title,
+.list-title{
+    width: 30%;
+}
+.category-date,
+.list-date{
+    width: 40%;
+}
+.category-status,
+.list-status{
+    width: 15%;
+}
+.category-num,
+.category-title,
+.category-date,
+.category-status,
+.list-num,
+.list-title,
+.list-date,
+.list-status{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cs-list{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    list-style: none;
+    border-bottom: 1px solid #858383;
+    margin-bottom: 5px;
+}

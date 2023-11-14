@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <typeAliases>
+
+        <typeAlias type="com.example.dasom.domain.dto.UserDto" alias="userDto"/>
+        <typeAlias type="com.example.dasom.domain.dto.AdminDto" alias="adminDto"/>
+        <typeAlias type="com.example.dasom.domain.dto.CsFileDto" alias="csFileDto"/>
+        <typeAlias type="com.example.dasom.domain.dto.CsWriteDto" alias="csWriteDto"/>
+        <typeAlias type="com.example.dasom.domain.dto.DonateFileDto" alias="donateFileDto"/>
+        <typeAlias type="com.example.dasom.domain.dto.DonateWriteDto" alias="donateWriteDto"/>
+        <typeAlias type="com.example.dasom.domain.dto.DonateDto" alias="donateDto"/>
+        <typeAlias type="com.example.dasom.domain.dto.CsDto" alias="csDto"/>
+
+
+        <typeAlias type="com.example.dasom.domain.vo.UserVo" alias="userVo"/>
+        <typeAlias type="com.example.dasom.domain.vo.DonateListVo" alias="donateListVo"/>
+        <typeAlias type="com.example.dasom.domain.vo.DonateWriteVo" alias="donateWriteVo"/>
+        <typeAlias type="com.example.dasom.domain.vo.SearchVo" alias="searchVo"/>
+
+        <typeAlias type="com.example.dasom.domain.vo.CsWriteVo" alias="csWriteVo"/>
+        <typeAlias type="com.example.dasom.domain.vo.AdDonateVo" alias="adDonateVo"/>
+        <typeAlias type="com.example.dasom.domain.vo.CsUserVo" alias="csUserVo"/>
+        <typeAlias type="com.example.dasom.domain.vo.DonateUserVo" alias="donateUserVo"/>
+
+        <typeAlias type="com.example.dasom.domain.vo.CsDetailVo" alias="csDetailVo"/>
+
+
+
+    </typeAliases>
+</configuration>

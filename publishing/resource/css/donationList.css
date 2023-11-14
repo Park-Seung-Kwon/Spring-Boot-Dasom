@@ -1,0 +1,164 @@
+@font-face {
+  font-family: "LINESeedKR-Bd";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "LINESeedKR-Bd";
+  /* border: 1px black solid; */
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.margin-auto {
+  margin: auto;
+}
+
+main {
+  width: 1400px;
+  min-height: 1500px;
+  display: flex;
+  flex-direction: column;
+  margin: 100px auto;
+}
+
+/* 상단 이미지 배너 */
+.top-banner {
+  width: 1300px;
+  height: 200px;
+  position: relative;
+}
+.banner-text {
+  width: 200px;
+  height: 100px;
+  font-size: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+.banner-img-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* 진행중인캠페인/종료된캠페인 */
+.campaign-open-close {
+  width: 1240px;
+  height: 90px;
+  display: flex;
+}
+
+.campaign {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.campaign-text {
+  width: 100%;
+  height: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  margin-bottom: 10px;
+}
+
+.open > .campaign-text {
+  color: #39b54a;
+}
+
+.close > .campaign-text {
+  color: gray;
+}
+hr {
+  width: 100%;
+  height: 3px;
+  border: none;
+  background-color: #39b54a;
+}
+/*  게시글 리스트  */
+.board-a{
+    text-decoration: none;
+    color: black;
+}
+.board-a:visited{
+    color: black;
+}
+
+.board-items {
+  width: 1240px;
+  min-height: 1000px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(250px, 400px));
+  gap: 20px;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.board-item-box {
+  width: 400px;
+  height: 400px;
+  flex-direction: column;
+  position: relative;
+  border-radius: 15px;
+  box-shadow: 0 30px 40px 0 rgba(0, 0, 0, 0.1);
+}
+
+.board-item-box:hover {
+  border: 1px solid #39b54a;
+}
+.box-top {
+  width: 100%;
+  height: 85%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  overflow: hidden;
+}
+.box-top-img {
+  width: 100%;
+  height: 100%;
+  transition: all 0.2s linear;
+  overflow: hidden;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.box-top-img:hover {
+  transform: scale(1.4);
+}
+
+.box-top-text {
+  width: 400px;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 30px;
+}
+
+.box-bottom-donate {
+  width: 100%;
+  height: 15%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.bottom-donate-text {
+  height: 100%;
+  width: 100%;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

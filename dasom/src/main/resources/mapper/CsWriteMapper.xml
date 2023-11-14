@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dasom.mapper.CsWriteMapper">
+    <insert id="insert">
+        <selectKey keyProperty="csWriteNumber" order="BEFORE" resultType="long">
+            select SEQ_CSWRITE.NEXTVAL FROM DUAL
+        </selectKey>
+        insert into TBL_CSWRITE (CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE, CSWRITE_RECRUIT_START, CSWRITE_RECRUIT_END,
+        CSWRITE_COUNT, CSWRITE_PLACE, CSWRITE_ACT_START, CSWRITE_ACT_END, CSWRITE_MANAGER, CSWRITE_PHONE)
+        values (#{csWriteNumber},#{adminNumber},#{csWriteTitle},#{csWriteRecruitStart},#{csWriteRecruitEnd},
+          #{csWriteCount}, #{csWritePlace}, #{csWriteActStart}, #{csWriteActEnd}, #{csWriteManager}, #{csWritePhone})
+    </insert>
+
+    <!--  총 봉사 모집글 개수  -->
+    <select id="selectTotal" resultType="_int" parameterType="searchVo">
+        SELECT COUNT(CSWRITE_NUMBER)
+        FROM TBL_CSWRITE
+        <choose>
+            <when test="'campaign'.equals(cate)">
+                WHERE CSWRITE_TITLE LIKE '%' || COALESCE(#{keyword, jdbcType=VARCHAR}, '') || '%'
+            </when>
+        </choose>
+
+    </select>
+    <select id="selectAll" resultType="csWriteDto" parameterType="searchVo">
+        SELECT RNUM,CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE,
+        TO_CHAR(TO_DATE(CSWRITE_RECRUIT_START, 'YYYY-MM-DD'), 'YYYY.MM.DD') AS CSWRITE_RECRUIT_START,
+        TO_CHAR(TO_DATE(CSWRITE_RECRUIT_END, 'YYYY-MM-DD'), 'YYYY.MM.DD') AS CSWRITE_RECRUIT_END,
+        CSWRITE_COUNT, CSWRITE_PLACE,
+        TO_CHAR(TO_DATE(CSWRITE_ACT_START, 'YYYY-MM-DD'), 'YYYY.MM.DD') AS CSWRITE_ACT_START,
+        TO_CHAR(TO_DATE(CSWRITE_ACT_END, 'YYYY-MM-DD'), 'YYYY.MM.DD') AS CSWRITE_ACT_END,
+        CSWRITE_STATUS,
+        TO_CHAR(CSWRITE_DATE, 'YYYY.MM.DD') AS CSWRITE_DATE,
+        CSWRITE_MANAGER,
+        CSWRITE_PHONE
+        FROM(
+            SELECT ROWNUM AS RNUM, CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE,
+            CSWRITE_RECRUIT_START, CSWRITE_RECRUIT_END, CSWRITE_COUNT, CSWRITE_PLACE,
+            CSWRITE_ACT_START, CSWRITE_ACT_END, CSWRITE_STATUS, CSWRITE_DATE,
+            CSWRITE_MANAGER, CSWRITE_PHONE
+            FROM (
+                SELECT CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE,
+                    CSWRITE_RECRUIT_START, CSWRITE_RECRUIT_END, CSWRITE_COUNT, CSWRITE_PLACE,
+                    CSWRITE_ACT_START, CSWRITE_ACT_END, CSWRITE_STATUS, CSWRITE_DATE,
+                    CSWRITE_MANAGER, CSWRITE_PHONE
+                FROM TBL_CSWRITE
+            <choose>
+                <when test="'campaign'.equals(searchVo.cate)">
+                    WHERE CSWRITE_TITLE LIKE '%' || #{searchVo.keyword} || '%'
+                    ORDER BY CSWRITE_NUMBER DESC
+                </when>
+                <otherwise>
+                    ORDER BY CSWRITE_NUMBER DESC
+                </otherwise>
+            </choose>
+            )X
+            WHERE
+            <![CDATA[
+            ROWNUM <= #{criteria.page}  * #{criteria.amount}
+             ]]>
+
+        )Y
+        WHERE RNUM > (#{criteria.page} - 1)  * #{criteria.amount}
+    </select>
+
+    <!--  봉사글 조회  -->
+    <select id="select" resultType="csWriteVo">
+        SELECT W.CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE,
+               CSWRITE_RECRUIT_START, CSWRITE_RECRUIT_END, CSWRITE_COUNT, CSWRITE_PLACE,
+               CSWRITE_ACT_START, CSWRITE_ACT_END, CSWRITE_STATUS,
+               CSWRITE_MANAGER, CSWRITE_PHONE, CSFILE_NUMBER, CSFILE_NAME,
+               CSFILE_UPLOAD_PATH, CSFILE_UUID
+        FROM TBL_CSWRITE W JOIN TBL_CSFILE F
+                        ON W.CSWRITE_NUMBER = F.CSWRITE_NUMBER
+        WHERE W.CSWRITE_NUMBER = #{csWriteNumber}
+    </select>
+
+    <delete id="delete">
+        DELETE FROM TBL_CSWRITE
+        WHERE CSWRITE_NUMBER = #{csWriteNumber}
+    </delete>
+
+    <update id="update">
+        UPDATE TBL_CSWRITE
+        SET CSWRITE_TITLE = #{csWriteTitle},
+            CSWRITE_RECRUIT_START = #{csWriteRecruitStart},
+            CSWRITE_RECRUIT_END = #{csWriteRecruitEnd},
+            CSWRITE_COUNT = #{csWriteCount},
+            CSWRITE_PLACE = #{csWritePlace},
+            CSWRITE_ACT_START = #{csWriteActStart},
+            CSWRITE_ACT_END = #{csWriteActEnd},
+            CSWRITE_MANAGER = #{csWriteManager},
+            CSWRITE_PHONE = #{csWritePhone}
+        WHERE CSWRITE_NUMBER = #{csWriteNumber}
+    </update>
+
+    <update id="updateStatus">
+        UPDATE TBL_CSWRITE
+        SET CSWRITE_STATUS = '0'
+        WHERE CSWRITE_NUMBER = #{csWriteNumber}
+    </update>
+
+</mapper>

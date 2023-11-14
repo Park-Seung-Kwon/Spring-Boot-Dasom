@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인페이지</title>
+    <link rel="stylesheet" href="/css/mainPage.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" />
+</head>
+<body>
+<header class="header" th:replace="fragments/header :: header">
+</header>
+<main>
+    <section class="main-section1">
+        <div class="main-banner-group">
+            <div class="main-banner-list">
+                <a href="" class="main-banner-tag">
+                    <img src="/img/banner4.png"
+                    class="main-banner-img"
+                    alt="main-banner-img1">
+                </a>
+            </div>
+            <div class="main-banner-list">
+                <a href="" class="main-banner-tag">
+                    <img src="/img/banner2.png"
+                    class="main-banner-img"
+                    alt="main-banner-img1">
+                </a>
+            </div>
+            <div class="main-banner-list">
+                <a href="" class="main-banner-tag">
+                    <img src="/img/banner3.png"
+                    class="main-banner-img"
+                    alt="main-banner-img1">
+                </a>
+            </div>
+            <button type="button" class="arrow-prev">&lt;</button>
+            <button type="button" class="arrow-next">&gt;</button>
+        </div>
+        <div class="main-total">
+            <div class="main-donate-group">
+                <div class="main-donate-text">누적 후원금</div>
+                <div class="main-donate-text2">|</div>
+                <div class="main-donate-money" th:text="${amount}">100,000,000원</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="main-section2">
+        <div class="main-poster">
+            <img src="/img/poster.png"
+            class="main-poster-img" alt="main-poster-img">
+        </div>
+        <button class="main-poster-btn" type="button" onclick="location.href='/donate/list'">
+            후원 참여하기
+        </button>
+    </section>
+
+    <hr class="main-section2-hr">
+
+    <section class="main-section3">
+        <div class="main-donate-title">후원</div>
+        <div class="main-donate-subtitle">다솜 나눔</div>
+        <div class="main-donate-group">
+            <div class="donate-group" th:each="donate, iterStat : ${donateList}" th:if="${iterStat.index < 4}">
+                <input type="hidden" th:value="${donate.donateWriteNumber}" name="donateWriteNumber">
+                <a class="main-donate-tag"
+                   href="javascript:void(0);"
+                   th:href="@{/donate/payPage(donateWriteTitle=${donate.donateWriteTitle}, donateWriteNumber=${donate.donateWriteNumber})}">
+                    <div class="main-donate-list">
+                        <img th:src="'/upload/' + ${donate.donateFileUploadPath} + '/th_' + ${donate.donateFileUuid} + '_' + ${donate.donateFileName}"
+                             class="main-donate-img" alt="main-donate-img">
+                        <div class="main-donate-tagtext">
+                            후원하기
+                        </div>
+                        <div class="main-donate-content" th:text="${donate.donateWriteTitle}">
+                            강원도 홍수 수해 후원하기
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <hr class="main-section3-hr">
+
+    <section class="main-section4">
+        <div class="main-va-title">봉사</div>
+        <div class="main-va-subtitle">아띠 활동</div>
+        <div class="main-va-group">
+            <div class="cs-group"  th:each="cs, iterStat : ${csList}" th:if="${iterStat.index < 4}">
+            <input type="hidden" th:value="${cs.csWriteNumber}" name="csWriteNumber">
+            <a th:href="@{/cs/detail(csNum = ${cs.csWriteNumber})}"
+               class="main-va-tag">
+                <div class="main-va-list">
+                    <div class="main-va-text">봉사지원</div>
+                    <div class="main-va-content" th:text="'[모집] ' + ${cs.csWriteTitle}"></div>
+                    <div class="main-va-at">
+                        <div class="main-va-attext">모집인원</div>
+                        <div class="main-va-atcnt" th:text = "${cs.csWriteCount}+'명'">300명</div>
+                    </div>
+                    <div class="main-va-date">
+                        <div class="main-va-datetext">활동기간</div>
+                        <div class="main-va-datedetail" th:text="${cs.csWriteActStart}+ '~'+ ${cs.csWriteActEnd}">2023.10.11 ~ 2024.01.31</div>
+                    </div>
+                </div>
+                <div class="main-va-status">모집진행</div>
+            </a>
+            </div>
+        </div>
+    </section>
+</main>
+<footer class="footer" th:replace="fragments/footer :: footer"></footer>
+
+<script th:src="@{/js/mainPage.js}" defer="defer" type="module"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+</body>
+</html>

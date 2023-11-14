@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원 관리 상세보기</title>
+    <link rel="stylesheet" href="/css/adMemberDetail.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- 좌측 어사이드 -->
+      <aside>
+        <div class="aside-spacing"></div>
+        <section class="member">
+          <a class="member-a" href="/admin/adUser">
+            <div class="member-text">회원관리</div>
+          </a>
+        </section>
+        <section class="board-mate">
+          <a class="board-mate-a" href="/admin/adDonationList">
+            <div class="board-mate-text">후원금리스트</div>
+          </a>
+        </section>
+        <section class="board-free">
+          <a class="board-free-a" href="/admin/adDonation">
+            <div class="board-free-text">후원 글 관리</div>
+          </a>
+        </section>
+        <section class="board-qna">
+          <a class="board-qna-a" href="/admin/adCs">
+            <div class="board-qna-text">봉사 글 관리</div>
+          </a>
+        </section>
+      </aside>
+      <!-- 우측 게시글 목록 창 -->
+      <main class="RTL">
+        <!-- 카테고리 & 글쓰기 창 -->
+        <section class="section-top">
+          <!-- 카테고리명 - 회원관리 -->
+          <div class="section-top-category-name">
+            <div class="section-top-category-name-text">회원 관리 상세보기</div>
+          </div>
+        </section>
+
+        <!-- 회원 목록 -->
+        <section class="section-board RTL">
+          <div class="RTL">
+            <!-- 회원목록 데이터값 -->
+            <div class="section-board-bottom top-right">
+              <div class="member-num top-left">아이디</div>
+              <div class="name top-right" th:text="${user.userId}">abb60455</div>
+            </div>
+
+            <!-- 회원목록 데이터값 -->
+            <div class="section-board-bottom">
+              <div class="member-num">이름</div>
+              <div class="name" th:text="${user.userName}">이우진</div>
+            </div>
+
+            <!-- 회원목록 데이터값 -->
+            <div class="section-board-bottom">
+              <div class="member-num">생년월일</div>
+              <div class="name" th:text="${user.userBirthYear}+'.'+${user.userBirthMonth}+'.'+${user.userBirthDay}">
+                1962.06.12</div>
+            </div>
+            <!-- 회원목록 데이터값 -->
+            <div class="section-board-bottom">
+              <div class="member-num">성별</div>
+              <div class="name" th:text="${user.userGender} == 'M' ? '남':'여'">남자</div>
+            </div>
+            <!-- 회원목록 데이터값 -->
+            <div class="section-board-bottom">
+              <div class="member-num">이메일</div>
+              <div class="name" th:text="${user.userEmail}">이메일</div>
+            </div>
+            <!-- 회원목록 데이터값 -->
+            <div class="section-board-bottom">
+              <div class="member-num">전화번호</div>
+              <div class="name"th:text="${user.userPhone}">010-8282-1312</div>
+            </div>
+            <!-- 회원목록 데이터값 -->
+            <div class="radius-minus bottom-right">
+              <div class="member-num botoom-left">
+                주소</div>
+              <div class="name"
+                   th:text="${user.userAddr}+' '+${user.userAddExtra}+' '+${user.userAddDetail}">서울시</div>
+            </div>
+          </div>
+
+          <!--    회원 후원 내역      -->
+          <div class="user-donation">
+            <div class="user-donation-text">후원내역</div>
+
+            <div class="user-donation-cate">
+              <div class="donation-num">후원번호</div>
+              <div class="donation-title">캠페인명</div>
+              <div class="donation-amount">후원금액</div>
+              <div class="donation-date">후원일자</div>
+            </div>
+
+            <div class="user-donation-list" th:each="donate : ${donation}">
+              <div class="user-donation-data">
+                <div class="donation-num" th:text="${donate.donateNumber}">1</div>
+                <div class="donation-title" th:text="${donate.donateWriteTitle}">수해복구</div>
+                <div class="donation-amount" th:text="${donate.donateAmount} +원">10000원</div>
+                <div class="donation-date" th:text="${donate.donateDate}">2023.10.03</div>
+              </div>
+            </div>
+          </div>
+
+        <!--    봉사지원 내역      -->
+          <div class="user-cs">
+            <div class="user-cs-text">봉사지원 내역</div>
+
+            <div class="user-cs-cate">
+              <div class="cs-num">모집번호</div>
+              <div class="cs-title">캠페인명</div>
+              <div class="cs-date">참여일자</div>
+            </div>
+
+            <div class="user-cs-list" th:each="cs : ${cs}">
+              <div class="user-cs-data">
+                <div class="cs-num" th:text="${cs.csNumber}">1</div>
+                <div class="cs-title" th:text="${cs.csWriteTitle}">수해복구</div>
+                <div class="cs-date" th:text="${cs.csApplyDate}">2023.10.18</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 카테고리 & 글쓰기 창 -->
+          <section class="section-top">
+            <!-- 카테고리명 - 회원관리 -->
+            <div class="section-top-write">
+              <a class="section-top-write-a" href="/admin/adUser">
+                <button class="button-write">이전페이지</button>
+              </a>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

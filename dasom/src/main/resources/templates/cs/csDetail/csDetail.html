@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/csDetail.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <title>봉사 정보</title>
+</head>
+<body>
+<header class="header" th:replace="fragments/header :: header"/>
+<main class="main">
+    <!-- 상단 이미지 배너 -->
+    <section class="top-banner">
+        <div class="banner-img">
+            <img class="banner-img-img" src="/img/가로사진.png" alt="">
+        </div>
+        <div class="banner-text-top overlap flex-center">참여</div>
+        <div class="banner-text-bottom overlap flex-center">당신의 참여로 더욱 행복한 세상을 만들어갑니다</div>
+    </section>
+
+    <!-- 봉사정보 -->
+    <section class="cs-info">
+        <div class="info-top" th:text="${csInfo.csWriteTitle}"></div>
+        <div class="info-bottom">
+            <div class="info-bottom-left">
+                <!-- 모집기간  -->
+                <div class="left-info-title">
+                    <div>모집 기간 :</div>
+                    <div th:text="${csInfo.csWriteRecruitStart}"></div>
+                    <div>~</div>
+                    <div th:text="${csInfo.csWriteRecruitEnd}"></div>
+                </div>
+                <!-- 모집인원  -->
+                <div class="left-info-title-count">
+                    <div class="recruit-count">모집 인원 :</div>
+                    <div th:text="${csInfo.csWriteCount}"></div>
+                    <div>명</div>
+                </div>
+                <!-- 활동장소  -->
+                <div class="left-info-title">
+                    <div>활동 장소 :</div>
+                    <div th:text="${csInfo.csWritePlace}"></div>
+                </div>
+                <!-- 담당자  -->
+                <div class="left-info-title">
+                    <div>담당자 :</div>
+                    <div th:text="${csInfo.csWriteManager}"></div>
+                </div>
+                <!-- 담당자 연락처  -->
+                <div class="left-info-title">
+                    <div>담당자 연락처 :</div>
+                    <div th:text="${csInfo.csWritePhone}"></div>
+                </div>
+
+            </div>
+            <div class="info-bottom-right">
+                <!-- 활동기간  -->
+                <div class="right-info-title">
+                    <div>활동 기간 :</div>
+                    <div th:text="${csInfo.csWriteActStart}"></div>
+                    <div>~</div>
+                    <div th:text="${csInfo.csWriteActEnd}"></div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </section>
+
+    <!-- 버튼 -->
+    <section class="btn">
+        <button class="apply-btn">신청하기</button>
+    </section>
+
+    <!-- 상세페이지 이미지 -->
+    <section class="info-detail">
+        <img class="info-detail-img"
+             th:src="'/upload/' + ${csInfo.csFileUploadPath}+ '/' + ${csInfo.csFileUuid} + '_' + ${csInfo.csFileName}"
+             alt="">
+    </section>
+</main>
+
+<input type="hidden" name="" class="cs-num" th:value="${csNum}">
+<footer class="footer" th:replace="fragments/footer :: footer"></footer>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+<script>
+
+    let csNum = $('.cs-num').val();
+    // console.log("@@@@@@@@@@@@@@@@@@@@csnum :"+ csNum);
+
+    $('.apply-btn').on('click', function () {
+
+        $.ajax({
+            type: 'get',
+            url: `/csRest/csComplete/${csNum}`,
+            dataType: 'json',
+            success: function (result) {
+                if (result) {
+                    alert('이미 신청한 봉사입니다!')
+                    location.href = `/myPage/myPageCs`
+                } else {
+                    location.href = `/cs/csComplete`
+                }
+            },
+            error: function (a, b, c) {
+                console.log(c);
+            }
+        });
+    });
+</script>
+
+</body>
+
+</html>

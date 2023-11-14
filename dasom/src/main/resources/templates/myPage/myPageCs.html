@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지(나의참여)</title>
+    <link rel="stylesheet" href="/css/myPageCs.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/headerLogin.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<!-- header -->
+    <header class="header" th:replace="fragments/header :: header">
+    </header>
+<main>
+    
+    <h2 class="cs-title">나의참여</h2>
+
+    <section class="cs-section">
+        <!-- 메뉴바 -->
+        <article class="donate-article">
+            <ul class="article-list">
+                <li class="article-donate">
+                    <a class="article-donate-tag" href="/myPage/myPageDonation">
+                        <div class="article-donate-text">
+                            나의후원내역
+                        </div>
+                        <div class="article-donate-text2">
+                            〉
+                        </div>
+                    </a>
+                </li>
+
+                <li class="article-cs">
+                    <a class="article-cs-tag" href="/myPage/myPageCs">
+                        <div class="article-cs-text">
+                            나의참여
+                        </div>
+                        <div class="article-cs-text2">
+                            〉
+                        </div>
+                    </a>
+                </li>
+
+                <li class="article-user">
+                    <a class="article-user-tag" href="/myPage/myPageUser">
+                        <div class="article-user-text">
+                            나의정보
+                        </div>
+                        <div class="article-user-text2">
+                            〉
+                        </div>
+                    </a>
+                </li>
+
+            </ul>
+        </article>
+
+        <!-- 봉사리스트 -->
+        <div class="cs-part">
+            <!-- 봉사 리스트 카테고리 -->
+            <ul class="cs-list-category">
+                <li class="category-num">봉사번호</li>
+                <li class="category-title">봉사캠페인명</li>
+                <li class="category-date">활동기간</li>
+                <li class="category-status">모집상태</li>
+            </ul>
+            <!-- 봉사내역 리스트 -->
+            <ul class="cs-list" th:each="board : ${List}">
+                <li class="list-num" th:text="${board.csNumber}"></li>
+                <li class="list-title"><a th:href="@{/cs/detail?csNum={id}(id = ${board.csWriteNumber})}" th:text="${board.csWriteTitle}"></a></li>
+                <li class="list-date" th:text="${board.csWriteActStart} + '~'+ ${board.csWriteActEnd}"></li>
+                <li class="list-status" th:if="${board.csWriteStatus}== '1'">모집중</li>
+                <li class="list-status" th:unless="${board.csWriteStatus}== '1'">모집종료</li>
+            </ul>
+<!--            <ul class="cs-list">-->
+<!--                <li class="list-num">1</li>-->
+<!--                <li class="list-title">강원도 수해 재난 봉사</li>-->
+<!--                <li class="list-date">2023-09-10 ~ 2023-10-10</li>-->
+<!--                <li class="list-status">모집중</li>-->
+<!--            </ul>-->
+        </div>
+    </section>
+
+</main>
+<footer class="footer" th:replace="fragments/footer :: footer"></footer>
+
+
+<script defer src="/js/myPageCs.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+</body>
+</html>

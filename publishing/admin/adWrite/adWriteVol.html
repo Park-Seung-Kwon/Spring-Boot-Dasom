@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../resource/css/adWriteVol.css" />
+</head>
+<body>
+    <!-- header -->
+    <header class="header" th:replace="fragments/header :: header">
+    </header>
+    <!-- out:container -->
+    <div class="container">
+      <h3 class="title">관리자 | 봉사모집 글 작성</h3>
+      <!-- form -->
+      <div class="form-wrap">
+        <form class="new-post-form" action="" method="post" enctype="multipart/form-data">
+            <!-- title -->
+          <div class="form-group">
+            <label for="post-title">제목</label>
+            <input type="text" id="post-title" name="volTitle" required />
+          </div>
+          <!-- 모집기간 -->
+          <div class="form-group">
+            <label for="post-content">모집기간</label>
+            <input type="date" id="recruit-period" name="volrecruitPeriod" required />
+            ~<input class = "period" type="date" id="recruit-period" name="volRecruitPeriod" required />
+          </div>
+          <!-- 모집인원 -->
+          <div class="form-group">
+            <label for="post-num">모집인원</label>
+            <input type="text" id="recruit-num" name="volRecruitNum" required />
+          </div>
+          <!-- 활동장소 -->
+          <div class="form-group">
+            <label for="post-place">활동장소</label>
+            <input type="text" id="vol-place" name="volPlace" required />
+          </div>
+          <!-- 활동기간 -->
+          <div class="form-group">
+            <label for="post-period">활동장소</label>
+            <input type="text" id="vol-period" name="volPeriod" required />
+          </div>
+          <!-- 담당자 -->
+          <div class="form-group">
+            <label for="post-manager">담당자</label>
+            <input type="text" id="manager" name="volManager" required />
+          </div>
+           <!-- 담당자 번호 -->
+           <div class="form-group">
+            <label for="post-manager-tel">담당자 번호</label>
+            <input type="text" id="manager-tel" name="volManagerTel" required />
+          </div>
+          <!-- img -->
+          <div class="form-group">
+
+            <ul class="file-wrap">
+              <li>
+                <input type="file" id="post-image" name="boardFile" accept="image/*" multiple />
+              </li>
+              <li class="img-list"></li>
+            </ul>
+          </div>
+          <!-- btn -->
+          <div class ="btn">
+          <button type="submit" class="back-btn">뒤로 가기</button>
+          <button type="submit" class="submit-btn">게시물 작성</button>
+        </div>
+        </form>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script src="/js/board/boardWrite.js"></script>
+    
+    
+</body>
+</html>

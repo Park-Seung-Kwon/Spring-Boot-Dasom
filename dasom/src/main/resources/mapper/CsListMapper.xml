@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dasom.mapper.CsListMapper">
+
+<!--    봉사 리스트 전체 게시글 수 구하기-->
+    <select id="selectTotal" resultType="_int">
+        SELECT COUNT(CSWRITE_NUMBER)
+        FROM TBL_CSWRITE
+        WHERE CSWRITE_STATUS = #{status}
+    </select>
+
+
+    <select id="selectList" resultType="csWriteDto">
+SELECT CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE, CSWRITE_RECRUIT_START, CSWRITE_RECRUIT_END,
+       CSWRITE_COUNT, CSWRITE_PLACE, CSWRITE_ACT_START, CSWRITE_ACT_END, CSWRITE_STATUS, CSWRITE_DATE,
+       CSWRITE_MANAGER, CSWRITE_PHONE
+FROM(
+        SELECT ROWNUM RNUM, CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE, CSWRITE_RECRUIT_START, CSWRITE_RECRUIT_END,
+               CSWRITE_COUNT, CSWRITE_PLACE, CSWRITE_ACT_START, CSWRITE_ACT_END, CSWRITE_STATUS, CSWRITE_DATE,
+               CSWRITE_MANAGER, CSWRITE_PHONE
+        FROM(
+        SELECT CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE, CSWRITE_RECRUIT_START, CSWRITE_RECRUIT_END,
+               CSWRITE_COUNT, CSWRITE_PLACE, CSWRITE_ACT_START, CSWRITE_ACT_END, CSWRITE_STATUS, CSWRITE_DATE,
+               CSWRITE_MANAGER, CSWRITE_PHONE
+        FROM TBL_CSWRITE
+        WHERE CSWRITE_STATUS = #{status}
+        ORDER BY CSWRITE_NUMBER DESC)
+<![CDATA[
+        WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+        ]]>)
+WHERE RNUM > (#{criteria.page} - 1) * #{criteria.amount}
+
+    </select>
+
+    <select id="selectDetail" resultType="csDetailVo">
+        SELECT W.CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE, CSWRITE_RECRUIT_START, CSWRITE_RECRUIT_END,
+                CSWRITE_COUNT, CSWRITE_PLACE, CSWRITE_ACT_START, CSWRITE_ACT_END, CSWRITE_STATUS, CSWRITE_DATE,
+                CSWRITE_MANAGER, CSWRITE_PHONE, CSFILE_NUMBER, CSFILE_NAME, CSFILE_UPLOAD_PATH, CSFILE_UUID
+        FROM  TBL_CSFILE F JOIN TBL_CSWRITE W
+        ON F.CSWRITE_NUMBER = W.CSWRITE_NUMBER
+        WHERE W.CSWRITE_NUMBER = #{csWriteNum}
+    </select>
+
+<!--    봉사신청 DB입력-->
+    <insert id="insert">
+        INSERT INTO TBL_CS (CS_NUMBER, USER_NUMBER, CSWRITE_NUMBER, CS_APPLY_DATE)
+        values (SEQ_CS.nextval, ${userNumber}, ${csWriteNumber},SYSDATE)
+    </insert>
+
+<!--   봉사신청 중복체크-->
+    <select id="selectCsDuplicate" resultType="_int">
+        SELECT COUNT(*)
+        FROM TBL_CS
+        WHERE USER_NUMBER = ${userNumber} AND CSWRITE_NUMBER = #{csWriteNumber}
+    </select>
+
+
+</mapper>

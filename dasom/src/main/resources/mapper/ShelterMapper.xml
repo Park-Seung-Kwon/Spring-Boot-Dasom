@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dasom.mapper.ShelterMapper">
+    <select id="select" resultType="userDto">
+        SELECT USER_NAME, USER_ADDR, USER_ADDR_EXTRA AS USER_ADD_EXTRA
+        FROM TBL_USERS
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+</mapper>

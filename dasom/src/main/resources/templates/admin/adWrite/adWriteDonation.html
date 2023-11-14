@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/adWriteDonation.css" />
+</head>
+<body>
+
+    <!-- out:container -->
+    <div class="container">
+      <h3 class="title">관리자 | 후원 글 작성</h3>
+      <!-- form -->
+      <div class="form-wrap">
+        <form class="new-post-form" action="/donateWrite/write" method="post" enctype="multipart/form-data">
+            <!-- title -->
+          <div class="form-group">
+            <label for="post-title">제목</label>
+            <input type="text" id="post-title" name="donateWriteTitle" required />
+          </div>
+          <!-- img -->
+          <div class="form-group">
+            <ul class="file-wrap">
+              <li>
+                <input type="file" id="post-image" name="donateFile" accept="image/*" required/>
+              </li>
+              <li class="img-list"></li>
+            </ul>
+          </div>
+          <!-- btn -->
+          <div class ="btn">
+          <button type="button" class="back-btn" onclick="location.href='/admin/adDonation'">뒤로 가기</button>
+          <button type="submit" class="submit-btn">게시물 작성</button>
+        </div>
+        </form>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script src="/js/adWriteDonation.js"></script>
+    
+    
+</body>
+</html>

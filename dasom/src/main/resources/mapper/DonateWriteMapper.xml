@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dasom.mapper.DonateWriteMapper">
+    <insert id="insert">
+        <selectKey keyProperty="donateWriteNumber" order="BEFORE" resultType="long">
+            select SEQ_DONATEWRITE.NEXTVAL FROM DUAL
+        </selectKey>
+        insert into TBL_DONATEWRITE (DONATEWRITE_NUMBER, ADMIN_NUMBER, DONATEWRITE_TITLE)
+        values (#{donateWriteNumber},#{adminNumber},#{donateWriteTitle})
+    </insert>
+
+<!--  총 후원글 개수  -->
+    <select id="selectTotal" resultType="_int" parameterType="searchVo">
+        SELECT COUNT(DONATEWRITE_NUMBER)
+        FROM TBL_DONATEWRITE
+        <choose>
+            <when test="'campaign'.equals(cate)">
+                WHERE DONATEWRITE_TITLE LIKE '%' || COALESCE(#{keyword, jdbcType=VARCHAR}, '') || '%'
+            </when>
+        </choose>
+    </select>
+
+    <select id="selectAll" resultType="donateWriteDto" parameterType="searchVo">
+        SELECT RNUM, DONATEWRITE_NUMBER, ADMIN_NUMBER, DONATEWRITE_TITLE,
+               DONATEWRITE_STATUS, TO_CHAR(DONATEWRITE_DATE, 'YYYY.MM.DD') AS DONATEWRITE_DATE
+        FROM(
+            SELECT  ROWNUM AS RNUM, DONATEWRITE_NUMBER, ADMIN_NUMBER, DONATEWRITE_TITLE,
+            DONATEWRITE_STATUS, DONATEWRITE_DATE
+            FROM(
+                SELECT DONATEWRITE_NUMBER, ADMIN_NUMBER, DONATEWRITE_TITLE,
+                       DONATEWRITE_STATUS, DONATEWRITE_DATE
+                FROM TBL_DONATEWRITE
+                <choose>
+                    <when test="'campaign'.equals(searchVo.cate)">
+                        WHERE DONATEWRITE_TITLE LIKE '%' || #{searchVo.keyword} || '%'
+                        ORDER BY DONATEWRITE_NUMBER DESC
+                    </when>
+                    <otherwise>
+                        ORDER BY DONATEWRITE_NUMBER DESC
+                    </otherwise>
+                </choose>
+            )X
+            WHERE
+            <![CDATA[
+              ROWNUM <= #{criteria.page}  * #{criteria.amount}
+            ]]>
+        )Y
+        WHERE RNUM > (#{criteria.page} - 1)  * #{criteria.amount}
+    </select>
+
+    <!--    후원글 조회  -->
+    <select id="select" resultType="donateWriteVo">
+        SELECT W.DONATEWRITE_NUMBER, ADMIN_NUMBER, DONATEWRITE_TITLE,
+               DONATEWRITE_STATUS, DONATEFILE_NUMBER,
+               DONATEFILE_NAME, DONATEFILE_UPLOAD_PATH, DONATEFILE_UUID
+        FROM TBL_DONATEWRITE W JOIN TBL_DONATEFILE F
+                            ON W.DONATEWRITE_NUMBER = F.DONATEWRITE_NUMBER
+        WHERE W.DONATEWRITE_NUMBER = #{donateWriteNumber}
+    </select>
+
+    <delete id="delete">
+        DELETE FROM TBL_DONATEWRITE
+        WHERE DONATEWRITE_NUMBER = #{donateWriteNumber}
+    </delete>
+
+    <update id="update">
+        UPDATE TBL_DONATEWRITE
+        SET DONATEWRITE_TITLE = #{donateWriteTitle}
+        WHERE DONATEWRITE_NUMBER = #{donateWriteNumber}
+    </update>
+
+    <update id="updateStatus">
+        UPDATE TBL_DONATEWRITE
+        SET DONATEWRITE_STATUS = '0'
+        WHERE DONATEWRITE_NUMBER = #{donateWriteNumber}
+    </update>
+</mapper>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/adModifyCs.css" />
+</head>
+<body>
+
+    <!-- out:container -->
+    <div class="container">
+      <h3 class="title">관리자 | 봉사모집 글 수정</h3>
+      <!-- form -->
+        <div class="form-wrap">
+            <form class="new-post-form" action="/csWrite/modify" method="post" enctype="multipart/form-data">
+                <!-- title -->
+                <div class="form-group">
+                    <label for="post-title">제목</label>
+                    <input type="text" id="post-title" name="csWriteTitle" th:value="${cs.csWriteTitle}" required />
+                </div>
+                <!-- 모집기간 -->
+                <div class="form-group">
+                    <label for="recruit-period start">모집기간</label>
+                    <input type="date" id="recruit-period start" name="csWriteRecruitStart" th:value="${cs.csWriteRecruitStart}" required />
+                    ~<input class = "period" type="date" id="recruit-period end" name="csWriteRecruitEnd" th:value="${cs.csWriteRecruitEnd}" required />
+                </div>
+                <!-- 모집인원 -->
+                <div class="form-group">
+                    <label for="recruit-num">모집인원</label>
+                    <input type="text" id="recruit-num" name="csWriteCount" th:value="${cs.csWriteCount}" required />
+                </div>
+                <!-- 활동장소 -->
+                <div class="form-group">
+                    <label for="vol-place">활동장소</label>
+                    <input type="text" id="vol-place" name="csWritePlace" th:value="${cs.csWritePlace}" required />
+                </div>
+                <!-- 활동기간 -->
+                <div class="form-group">
+                    <label for="act-period start">활동기간</label>
+                    <input type="date" id="act-period start" name="csWriteActStart" th:value="${cs.csWriteActStart}" required />
+                    ~<input class = "period" type="date" id="act-period end" name="csWriteActEnd" th:value="${cs.csWriteActEnd}" required />
+                </div>
+                <!-- 담당자 -->
+                <div class="form-group">
+                    <label for="manager">담당자</label>
+                    <input type="text" id="manager" name="csWriteManager" th:value="${cs.csWriteManager}" required />
+                </div>
+                <!-- 담당자 번호 -->
+                <div class="form-group">
+                    <label for="manager-tel">담당자 번호</label>
+                    <input type="text" id="manager-tel" name="csWritePhone" th:value="${cs.csWritePhone}" required />
+                </div>
+                <!-- img -->
+                <div class="form-group">
+
+                    <ul class="file-wrap">
+                        <li>
+                            <input type="file" id="post-image" name="csWriteFile" accept="image/*"/>
+                        </li>
+                        <li class="img-list"></li>
+                        <div class="post-images">
+                            <!-- 이미지 예시 -->
+                            <img src="" alt="첨부 이미지 1" class="post-image" />
+                            <!-- /이미지 예시 -->
+                        </div>
+
+                        <div class="big-img-wrap">
+                            <div class="big-img-box">
+                                <img src="" alt="" class="big-img">
+                            </div>
+                        </div>
+
+                        <input type="hidden" th:value="${cs.csWriteNumber}" name="csWriteNumber" class="board-num">
+                    </ul>
+                </div>
+                <!-- btn -->
+                <div class ="btn">
+                    <button type="button" class="back-btn" onclick="location.href='/admin/adCs'">뒤로 가기</button>
+                    <button type="submit" class="submit-btn">게시물 작성</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script src="/js/adModifyCs.js"></script>
+    
+    
+</body>
+</html>

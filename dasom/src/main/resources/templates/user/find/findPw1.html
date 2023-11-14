@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀번호 찾기</title>
+    <link rel="stylesheet" href="/css/findPw.css"/>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+
+<body>
+<!-- header -->
+<header class="header" th:replace="fragments/header :: header">
+</header>
+<!-- out:container -->
+<article class="find-pw">
+    <div class="width">
+        <!-- pageTitle -->
+        <div class="page-title">
+            <h1 class="title">아이디/비밀번호 찾기</h1>
+            <input type="hidden" th:value="${userNumber}" name="userNumber"></input>
+            <!-- tab -->
+            <div class="tab">
+                <a href="/find/findId" class="aa"><span class="id-tab">아이디 찾기</span></a>
+                <a href="/find/findPassword" class="aa"><span class="pw-tab">비밀번호 찾기</span></a>
+            </div>
+        </div>
+
+        <!-- form -->
+        <div class="form-wrap">
+            <form class="find-pw-form">
+                <!-- phone-number -->
+                <div class="form-group phone-group">
+                    <label>휴대전화</label>
+                    <input class="input-back-color-gray" type="text" id="id-phnum" th:value="${userPhone}" name="userPhone" readonly/>
+                </div>
+                <button type="button" class="submit-btn">인증하기</button>
+
+            </form>
+        </div>
+    </div>
+</article>
+<!--   회원 전화번호 변경    (모달)-->
+<div class="phone-change-modal">
+    <div class="change-ph">
+        <div class="change-title-ph">문자 인증</div>
+        <!-- 핸드폰번호(인증포함) -->
+        <div class="user-info">
+            <div class="user-text">
+                휴대폰 번호
+            </div>
+            <input type="text" class="input-back-color-gray user-phone-input" th:value="${userPhone}" id="userPhoneCh" name="userPhoneCh" readonly/>
+            <button type="button" class="user-phone-btn1" onclick="startCountdown()">인증하기</button>
+        </div>
+        <!-- 휴대폰번호 인증 -->
+        <div class="phone-check">
+            <div class="user-text">
+                번호 인증
+            </div>
+            <input type="text" class="user-check-input" id="verificationCode" name="verificationCode"/>
+            <button type="button" class="user-check-btn" onclick="PhoneCheck()">인증확인</button>
+        </div>
+        <div id="countdown" class="countdown"></div>
+    </div>
+
+    <div class="phone-modal-close">닫기</div>
+</div>
+
+<!-- 비밀번호 변경(모달) -->
+<form action="/find/UserPasswordUp" method="post">
+    <input type="hidden" th:value="${userNumber}" name="userNumber"></input>
+    <div class="change-modal">
+        <div class="change-pw">
+            <div class="change-title">비밀번호 변경</div>
+            <div class="user-info">
+                <div class="user-text">
+                    변경할 비밀번호
+                </div>
+                <input type="password" class="user-password-input2" oninput="pwCheck()" name="userPassword"/>
+            </div>
+            <div class="user-info">
+                <div class="user-text">
+                    비밀번호 확인
+                </div>
+                <input type="password" class="user-password-input3" oninput="pwCheck()"/>
+            </div>
+            <div class="Confirm"></div>
+        </div>
+        <button type="submit" class="user-change-btn">비밀번호 변경</button>
+    </div>
+
+    <div class="modal-close">닫기</div>
+</form>
+<footer class="footer" th:replace="fragments/footer :: footer"></footer>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+        crossorigin="anonymous"></script>
+<script th:inline="javascript">
+    // Thymeleaf를 사용하여 userNumber 값을 가져옴
+    var userNumber = [[${userNumber}]];
+</script>
+<script defer th:src="@{/js/findPw.js}"></script>
+</body>
+</html>

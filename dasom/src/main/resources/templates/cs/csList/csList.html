@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/csList.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <title>봉사페이지</title>
+</head>
+
+<body>
+<header class="header" th:replace="fragments/header :: header"/>
+    <main>
+        <!-- 상단 이미지 배너 -->
+        <section class="top-banner margin-auto">
+            <div class="banner-img">
+                <img class="banner-img-img" src="/img/가로사진.png" alt="">
+            </div>
+            <div class="banner-text flex-center">봉사단 모집</div>
+        </section>
+
+        <!-- 진행중인캠페인/종료된캠페인 -->
+        <section class="campaign-open-close margin-auto">
+            <div class="campaign open">
+                <div class="campaign-text" id="campaign-ongoing">진행중 캠페인</div>
+                <hr id="hr-on">
+            </div>
+            <div class="campaign close">
+                <div class="campaign-text" id="campaign-end">종료된 캠페인</div>
+                <hr id="hr-end">
+            </div>
+        </section>
+
+        <section class="board-items">
+            <!-- 게시글 리스트 -->
+
+               <!-- 게시글 끝 -->
+
+        </section>
+    </main>
+<footer class="footer" th:replace="fragments/footer :: footer"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous"></script>
+    <script>
+        let page =1;
+        let status = '1';
+
+        //모집진행 & 모집완료 버튼 결정하는 변수. 초기값:모집진행
+        let stat = '모집진행';
+        console.log(stat);
+
+        //페이지 진입시 비동기 게시판 출력
+        myModule(status,page,stat,showResult);
+
+        //비동기식 게시판 리스트 출력 함수
+        function myModule(status,page,stat,callback) {
+            $.ajax({
+                url: `/csRest/${status}/${page}`,
+                type: 'get',
+                dataType: 'json',
+                success: function (result) {
+                        console.log('result : '+ result);
+                        console.log('stat : '+ stat);
+                    if (callback) {
+                        callback(result,stat);
+                    }
+                },
+                error: function (a, b, c) {
+                    console.log(c);
+                }
+            });
+
+        }
+
+        //html에 들어갈 양식
+        function showResult(result, stat) {
+            let text = '';
+            result.CsWriteDtoList.forEach(r => {
+
+                if(r.csWriteStatus ==1){
+                    text += `
+                <a class="main-va-tag" href="/cs/detail?csNum=${r.csWriteNumber}">`;
+                }else{
+                    text += `
+                    <a class="main-va-tag">`;
+                }
+                
+                 text += `
+                <div class="main-va-list">
+                    <div class="main-va-text">봉사지원</div>
+                    <div class="main-va-content">[모집]${r.csWriteTitle}</div>
+                    <div class="main-va-at">
+                        <div class="main-va-attext">모집인원</div>
+                        <div class="main-va-atcnt">${r.csWriteCount}명</div>
+                    </div>
+                    <div class="main-va-date">
+                        <div class="main-va-datetext">활동기간</div>
+                        <div class="main-va-datedetail">${r.csWriteActStart} ~ ${r.csWriteActEnd}</div>
+                    </div>
+                </div>
+                <div class="main-va-status">${stat}</div>
+            </a>
+                    `;
+            });
+            $('.board-items').append(text);
+        }
+
+        //진행중 캠페인 클릭
+        $('#campaign-ongoing').on('click',function (){
+            $('.board-items').html('');
+            stat = '모집진행';
+            //버튼 css 조정
+            document.getElementById("hr-end").style.display="none";
+            document.getElementById("hr-end").style.color="black";
+            document.getElementById("hr-on").style.display="";
+            document.getElementById("campaign-ongoing").style.color="#39b54a";
+            document.getElementById("campaign-end").style.color="black";
+            status ='1';
+            page=1;
+            myModule(status,page,stat, showResult);
+        });
+
+        //종료된 캠페인 클릭
+        $('#campaign-end').on('click',function (){
+            $('.board-items').html('');
+                stat = '모집완료';
+            console.log(stat);
+            console.log("종료된 캠페인!!");
+            //버튼 css 조정
+            document.getElementById("hr-on").style.display="none";
+            document.getElementById("hr-on").style.color="black";
+            document.getElementById("hr-end").style.display="block";
+            document.getElementById("campaign-ongoing").style.color="black";
+            document.getElementById("campaign-end").style.color="#39b54a";
+            status ='0';
+            page=1;
+            myModule(status,page,stat,showResult);
+        });
+
+        //무한 스크롤 페이징
+        $(window).on('scroll', function (){
+
+            // 현재 브라우저의 스크롤 위치를 의미함
+            console.log(`scrollTop : ${ $(window).scrollTop() }`);
+            // 문서 전체의 높이를 구함
+            console.log(`document : ${ $(document).height() }`);
+            //브라우저 화면의 높이를 구함
+            console.log(`window : ${ $(window).height() }`);
+
+            if(Math.round($(window).scrollTop()) == $(document).height() - $(window).height()){
+                console.log(++page);
+                myModule(status,page,stat,showResult);
+            }
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>

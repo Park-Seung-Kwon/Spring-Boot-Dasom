@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dasom.mapper.AdUserMapper">
+
+    <select id="selectTotal" resultType="_int" parameterType="searchVo">
+        SELECT COUNT(USER_NUMBER)
+        FROM TBL_USERS
+        <choose>
+            <when test="'name'.equals(cate)">
+                  WHERE USER_NAME LIKE '%' || COALESCE(#{keyword, jdbcType=VARCHAR}, '') || '%'
+            </when>
+            <when test="'id'.equals(cate)">
+                WHERE USER_ID LIKE '%' || COALESCE(#{keyword, jdbcType=VARCHAR}, '') || '%'
+            </when>
+        </choose>
+    </select>
+
+    <select id="selectAll" resultType="userDto" parameterType="searchVo">
+        SELECT RNUM, USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_BIRTH_YEAR,
+               USER_BIRTH_MONTH, USER_BIRTH_DAY, USER_PHONE, USER_EMAIL,
+               USER_GENDER, USER_POST_CODE, USER_ADDR, USER_ADDR_EXTRA, USER_ADDR_DETAIL,
+               TO_CHAR(USER_JOINDATE, 'YYYY.MM.DD') AS USER_JOINDATE
+        FROM (
+            SELECT ROWNUM AS RNUM, USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_BIRTH_YEAR,
+                USER_BIRTH_MONTH, USER_BIRTH_DAY, USER_PHONE, USER_EMAIL,
+                USER_GENDER, USER_POST_CODE, USER_ADDR, USER_ADDR_EXTRA, USER_ADDR_DETAIL,
+                USER_JOINDATE
+            FROM(
+                 SELECT USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_BIRTH_YEAR,
+                        USER_BIRTH_MONTH, USER_BIRTH_DAY, USER_PHONE, USER_EMAIL,
+                        USER_GENDER, USER_POST_CODE, USER_ADDR, USER_ADDR_EXTRA, USER_ADDR_DETAIL,
+                        USER_JOINDATE
+                 FROM TBL_USERS
+                <choose>
+                    <when test="'name'.equals(searchVo.cate)">
+                          WHERE USER_NAME LIKE '%' || #{searchVo.keyword} || '%'
+                          ORDER BY USER_NUMBER DESC
+                    </when>
+                    <when test="'id'.equals(searchVo.cate)">
+                          WHERE USER_ID LIKE '%' || #{searchVo.keyword} || '%'
+                          ORDER BY USER_NUMBER DESC
+                    </when>
+                    <otherwise>
+                          ORDER BY USER_NUMBER DESC
+                    </otherwise>
+                </choose>
+            )X
+            <![CDATA[
+            WHERE  ROWNUM <= #{criteria.page} * #{criteria.amount}
+            ]]>
+        )Y
+        WHERE RNUM > (#{criteria.page} - 1)  * #{criteria.amount}
+
+
+    </select>
+
+    <select id="select" resultType="userDto">
+        SELECT USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_BIRTH_YEAR,
+               USER_BIRTH_MONTH, USER_BIRTH_DAY, USER_PHONE, USER_EMAIL,
+               USER_GENDER, USER_POST_CODE, USER_ADDR, USER_ADDR_EXTRA as USER_ADD_EXTRA, USER_ADDR_DETAIL as USER_ADD_DETAIL,
+               TO_CHAR(USER_JOINDATE, 'YYYY.MM.DD') AS USER_JOINDATE
+        FROM TBL_USERS
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+
+    <delete id="delete">
+        DELETE FROM TBL_USERS
+        WHERE USER_NUMBER = #{userNumber}
+    </delete>
+</mapper>

@@ -1,0 +1,453 @@
+@font-face {
+  font-family: "LINESeedKR-Bd";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+* {
+  font-family: "LINESeedKR-Bd";
+  margin: 0;
+  padding: 0;
+}
+/* 전체컨테이너 */
+.container {
+  width: 1240px;
+  height: 1340px;
+  display: flex;
+  margin: auto;
+  position: relative;
+}
+/* 좌측 어사이드 */
+aside {
+  height: 100%;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+aside section {
+  width: 150px;
+  height: 40px;
+  margin-top: 30px;
+  background-color: #39b54a;
+  border-radius: 6px;
+}
+aside section:hover {
+  background-color: #16a729;
+}
+aside a {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+aside div {
+  font-weight: bold;
+  font-size: 15px;
+  color: white;
+}
+.aside-spacing {
+  width: 100%;
+  height: 220px;
+  margin-top: 40px;
+  background-color: white;
+}
+.member {
+  background-color: #16a729;
+}
+.board-logout-a{
+  color: #000000;
+  background-color: white;
+}
+.board-logout-text{
+  color: #000000;
+}
+.board-logout-text:hover{
+  color: #39b54a;
+}
+
+/* 우측 게시글 목록 창 */
+main {
+  height: 100%;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  /*position: relative;*/
+}
+
+/*  카테고리 & 글쓰기 창 */
+.section-top {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+}
+/* 카테고리명 - 회원관리 */
+.section-top-category-name {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+}
+.section-top-category-name-text {
+  font-weight: bold;
+  font-size: 28px;
+}
+.section-top-logOut{
+  height: 43px;
+  width: 83px;
+  background-color: #39b54a;
+  font-size: 14px;
+  color: white;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+.section-top-logOut:hover{
+  background-color: #39a14a;
+}
+/* 글쓰기 버튼 */
+.section-top-write {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  flex-direction: column;
+}
+.section-top-write-a {
+  height: 40px;
+  width: 100px;
+}
+.button-write {
+  height: 45px;
+  width: 100px;
+  background-color: #39b54a;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+  margin-left: 43px;
+}
+.button-write:hover {
+  background-color: #16a729;
+}
+
+/* 검색바 */
+.section-search{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+/* 검색바 */
+.search-form {
+  width: 80%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.search-dropdown {
+  width: 15%;
+  height: 95%;
+  border: 1px #39b54a solid;
+  border-radius: 6px;
+  margin-right: 5px;
+}
+
+.search-bar {
+  width: 70%;
+  height: 95%;
+  border: 1px #39b54a solid;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.search-button {
+  height: 100%;
+  width: 15%;
+  background-color: #39b54a;
+  border: 1px #39b54a solid;
+  font-size: 14px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+/* 회원 목록 */
+.section-board {
+  width: 100%;
+  /* height: 940px; */
+  display: flex;
+  flex-direction: column;
+}
+.section-board-top,
+.section-board-bottom,
+.section-board-bottom2{
+  width: 100%;
+  height: 55px;
+  display: flex;
+  background-color: #f4f4f4;
+}
+.section-board-title{
+  width: 100%;
+  /*height: 89px;*/
+  display: flex;
+  background-color: #f4f4f4;
+  flex-direction: column;
+}
+.section-board-top {
+  font-weight: bold;
+  height: 50px;
+  background-color: #39b54a;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.section-board-top .num .csNum{
+  border-top-left-radius: 6px;
+}
+.section-board-top .empty {
+  border-top-right-radius: 6px;
+}
+
+.section-board-bottom2 {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.section-board-bottom2 .num .csNum{
+  border-bottom-left-radius: 6px;
+}
+.section-board-bottom2 .execute {
+  border-bottom-right-radius: 6px;
+}
+
+/* 회원정보 컬럼항목 */
+.num,
+.csNum,
+.name,
+.campaign,
+.campaign-btn,
+.birth,
+.state,
+.writeDate,
+.recruitDate,
+.manager,
+.managerPhone,
+.empty,
+.execute {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid black; */
+  font-size: 13px;
+}
+
+/* 회원번호 */
+.num {
+  width: 5%;
+}
+.csNum{
+  width: 5%;
+}
+  /* 캠페인 */
+.campaign {
+  width: 10%;
+  text-decoration: none;
+  color: black;
+}
+.campaign-btn {
+  width: 10%;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+.campaign-btn:hover{
+  color: #39b54a;
+}
+/*모집기간*/
+.recruitDate{
+  width: 20%;
+}
+.manager{
+  width: 10%;
+}
+.managerPhone{
+  width: 12%;
+}
+/* 상태 */
+.state {
+  width: 5%;
+}
+/* 작성일자 */
+.writeDate {
+  width: 10%;
+}
+/* 빈공간 & 버튼 */
+.empty,
+.execute {
+  width: 9%;
+}
+
+/* 페이징 */
+.section-paging {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.paging-inner {
+  width: 70%;
+  height: 70%;
+  border: 1px black solid;
+}
+.noResult-text{
+  margin: auto;
+  margin-top: 30px;
+}
+.cs-user-modal{
+  display: none;
+  position: absolute;
+  width: 122%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: -12%;
+  z-index: 2;
+
+}
+.cs-user-list{
+  padding: 12px;
+  display: flex;
+  position: fixed;
+  width: 57%;
+  height: 550px;
+  background-color: #f6f6f6;
+  flex-direction: column;
+  top : 15%;
+  left: 32%;
+  overflow-y: auto;
+  z-index: 5;
+  border-radius: 6px;
+  box-shadow: 3px 3px 3px gray;
+}
+.cs-user-title{
+  width: 100%;
+  height: 60px;
+  display: flex;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+  font-size: 20px;
+}
+.cs-user-group{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+.cs-user{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  background-color: #39b54a;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  border-radius: 6px;
+}
+.cs-cate-bottom{
+  display: flex;
+  width: 100%;
+  font-size: 14px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.cs-cate{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+}
+
+.cs-user-num{
+  width: 10%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.cs-user-id{
+  width: 15%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.cs-user-name{
+  width: 15%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.cs-user-phone{
+  width: 15%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.cs-user-email{
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.cs-user-date{
+  width: 15%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-close{
+  position: absolute;
+  height: 40px;
+  width: 70px;
+  font-size: 16px;
+  background-color: #39b54a;
+  top: 2%;
+  right: 5%;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

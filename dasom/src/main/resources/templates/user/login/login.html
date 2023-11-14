@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+    <!-- header -->
+    <header class="header" th:replace="fragments/header :: header"/>
+    <!-- out:container -->
+    <div class="container">
+      <h1 class="title">로그인</h1>
+      <!-- form -->
+      <div class="form-wrap">
+        <form class="login-form" action="/user/loginPage"  method="post">
+          <div class="form-group">
+            <input name="userId" type="text" id="userId" placeholder="아이디를 입력하세요" required/>
+            <input name="userPassword" type="password" id="userPw" placeholder="비밀번호를 입력하세요" required />
+          </div>
+          <label for="chk" class="check">
+          <input type="checkbox" id="chk">
+          <i class="circle" id="checkId"></i>
+          <span class="text">아이디 저장하기</span>
+          </label>  
+          <!-- btn -->
+          <button type="button" class="login-btn">로그인</button>
+        <!-- find id,pw -->
+        <div>
+            <a class="a" href="/find/findId" id="find-id" ><span>아이디 찾기</span></a>
+            <a class="a" href="/find/findPassword" id="find-pw" ><span>비밀번호 찾기</span></a>
+            <a class="a" href="/user/join" id="join" ><span>회원가입</span></a>
+        </div>
+        </form>
+      </div>
+    </div>
+    <script src="/js/login.js"></script>
+    <footer class="footer" th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

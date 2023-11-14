@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="/css/join.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <script defer src="/js/join.js"></script>
+</head>
+<header class="header" th:replace="fragments/header :: header"/>
+<body>
+<main>
+    <h2 class="join-title">회원가입</h2>
+
+    <hr class="join-title-hr">
+    
+    <form class = "form-tag" action="/user/joinPage" method="post">
+        <!-- 아이디 -->
+        <div class="join-id">
+            <div class="join-id-text">아이디</div>
+            <div>
+                <input name="userId" type="text" class="join-id-input" required/>
+                <button class="join-id-btn" type="button">중복확인</button>
+            </div>
+        </div>
+
+        <!-- 비밀번호 -->
+        <div class="join-pw">
+            <div class="join-pw-text">비밀번호</div>
+            <input name="userPassword" type="password" class="join-pw-input" oninput="pwCheck()" required/>
+            <div class="join-pwck-text">비밀번호 확인</div>
+            <input type="password" name = "userckPassword" class="join-pwck-input" oninput="pwCheck()" required/>
+            <div class="Confirm"></div>
+        </div>
+        
+        <!-- 이름 -->
+        <div class="join-name">
+            <div class="join-name-text">이름</div>
+            <input name="userName" type="text" class="join-name-input" required/>
+        </div>
+
+        <!-- 생년월일 -->
+        <div class="form-group">
+            <div class="id-birth">생년월일</div>
+            <div class="birth" id="birth-info">
+                <select name="userBirthYear" class="box" id="birth-year" required>
+                    <option disabled selected>출생 연도</option>
+                </select>
+                <select name="userBirthMonth" class="box" id="birth-month" required>
+                    <option disabled selected>월</option>
+                </select>
+                <select name="userBirthDay" class="box" id="birth-day" required>
+                    <option disabled selected>일</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 휴대전화 -->
+        <div class="join-phone">
+            <div class="join-phone-text">휴대전화</div>
+            <input name="userPhone" type="text" id="userPhone" class="join-name-input" required/>
+        </div>
+        <button class="join-phone-btn" type="button">인증하기</button>
+        
+        <!-- 휴대폰번호 인증 -->
+        <div class="phone-check">
+            <div class="user-text">
+                번호 인증
+            </div>
+            <div class="check-group">
+                <input type="text" class="user-check-input" id="verificationCode"/>
+                <button type="button" class="user-check-btn">인증확인</button>
+            </div>
+        </div>
+        <div id="countdown" class="countdown"></div>
+
+        <!-- 이메일 -->
+        <div class="join-email">
+            <div class="join-email-text">이메일</div>
+            <input name="userEmail" type="email" class="join-email-input" required/>
+        </div>
+        
+        <!-- 성별 -->
+        <div class="join-gender">
+            <div class="join-gender-text">성별</div>
+            <div class="join-gender-choice">
+                <label class="join-gender-label">
+                    <input type="radio" name="userGender" class="join-genderF-input" value="F" required/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;여자
+                </label>
+                <label class="join-gender-label">
+                    <input  type="radio" name="userGender" class="join-genderM-input" value="M" required/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;남자
+                </label>
+            </div>
+        </div>
+
+        <!-- 주소 -->
+        <div class="join-addr">
+            <div class="join-addr-text">주소</div>
+            <div class="join-addr-input">
+                <div class="join-addr-group1">
+                    <input name="userPostCode" type="text" class="join-addr-postcode" id="sample6_postcode" placeholder="우편번호" readonly>
+                    <input type="button" class="join-addr-btn" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" readonly>
+                </div>
+                <input name="userAddr" type="text" class="join-addr-addr" id="sample6_address" placeholder="주소" readonly>
+                <div class="join-addr-group2">
+                    <input name="userAddExtra" type="text" class="join-addr-extra" id="sample6_extraAddress" placeholder="참고항목" readonly>
+                    <input name="userAddDetail" type="text" class="join-addr-detail" id="sample6_detailAddress" placeholder="상세주소">
+                </div>
+            </div>
+        </div>
+
+        <!-- 개인정보처리방침 -->
+        <div class="join-termOfUse">
+            <input type="checkbox" class="join-termOfUse-checkbox" required/>
+            <div class="join-termOfUse-text">[필수]&nbsp;개인정보처리방침</div>
+            <a class="join-termOfUse-modal" href="/include/termOfUse.html">
+                자세히&nbsp;&nbsp; >
+            </a>
+        </div>
+
+        <!-- 회원가입 완료 버튼 -->
+        <button class="join-submit-btn" type="button">완료</button>
+
+        <!-- 개인정보처리 방침 모달 -->
+        <section class="main-section5">
+            <div id="termOfUse" class="modal-termOfUse"></div>
+            <div class="modal-termOfUse-close">
+                닫기
+            </div>
+        </section>
+    </form>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<footer class="footer" th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

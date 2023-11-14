@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="findPw.css" />
+</head>
+
+<body>
+    <!-- header -->
+    <header class="header" th:replace="fragments/header :: header">
+    </header>
+    <!-- out:container -->
+    <article class="find-pw">
+        <div class="width">
+            <!-- pageTitle -->
+            <div class="page-title">
+                <h1 class="title">아이디/비밀번호 찾기</h1>
+
+                <!-- tab -->
+                <div class="tab">
+                    <a><span class="id-tab">아이디 찾기</span></a>
+                    <a><span class="pw-tab">비밀번호 찾기</span></a>
+                </div>
+            </div>
+
+            <!-- form -->
+            <div class="form-wrap">
+                <form class="find-pw-form" action="" method="post" enctype="multipart/form-data">
+                    <!-- name -->
+                    <div class="form-group">
+                        <label for="pw-name">이름</label>
+                        <input type="text" id="pw-name" name="find-pw-name" required />
+                    </div>
+                    <!-- id -->
+                    <div class="form-group">
+                        <label for="pw-id">아이디</label>
+                        <input type="text" id="pw-id" name="find-pw-id" required />
+                    </div>
+                    <!-- phone-number -->
+                    <div class="form-group phone-group">
+                        <label for="pw-phonenum">휴대전화</label>
+                        <input type="text" id="id-phnum" name="find-id-phnum" required />
+                        <button type="submit" class="btn">인증하기</button>
+
+                    </div>
+                    <!-- btn -->
+                    <!-- <button type="submit" class="btn">인증하기</button> -->
+                    <!-- submit-btn -->
+                    <button type="submit" class="submit-btn">확인하기</button>
+            </div>
+            </form>
+        </div>
+    </article>
+
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/donationComplete.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <title>후원완료</title>
+</head>
+<!--헤더-->
+<header class="header" th:replace="fragments/header :: header"/>
+<body>
+<main>
+    <!-- 상단 이미지 배너 -->
+    <section class="top-banner">
+        <div class="banner-img">
+            <img class="banner-img-img" src="/img/가로사진.png" alt="">
+        </div>
+        <div class="banner-text flex-center">후원</div>
+    </section>
+        <!-- 아이콘 -->
+        <section class="icon">
+            <img class="icon-img" src="/img/heart.png" alt="">
+        </section>
+        <!-- 후원 감사 멘트 -->
+        <section class="comment">
+            <div>"</div>
+            <div th:text="${userName}"></div>
+            <div>다솜님의 후원으로 희망에 한 발짝 더 가까워졌습니다. 감사합니다"</div>
+        </section>
+
+        <section class="btn">
+
+        <a href="/main/mainPage"><button class="main-btn" >메인페이지로 이동</button></a>
+        <a href="/myPage/myPageDonation"><button class="my-btn">마이페이지로 이동</button></a>
+
+
+
+        </section>
+    </main>
+</body>
+<footer class="footer" th:replace="fragments/footer :: footer"></footer>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/csComplete.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <title>봉사신청완료</title>
+</head>
+
+<body>
+<header class="header" th:replace="fragments/header :: header"/>
+<main>
+    <!-- 상단 이미지 배너 -->
+    <section class="top-banner">
+        <div class="banner-img">
+            <img class="banner-img-img" src="/img/가로사진.png" alt="">
+        </div>
+        <div class="banner-text-top flex-center">참여</div>
+        <div class="banner-text-bottom flex-center">당신의 참여로 더욱 행복한 세상을 만들어 갑니다</div>
+    </section>
+
+    <!-- 아이콘 -->
+    <section class="icon">
+        <img class="icon-img" src="/img/heart.png" alt="">
+    </section>
+    <!-- 후원 감사 멘트 -->
+    <section class="comment">
+        <div>"</div>
+        <div th:text="${userName}"></div>
+        <div>다솜님의 따뜻한 마음과 손길로 희망에 한 발짝 더 가까워 졌습니다. 감사합니다"</div>
+    </section>
+
+    <section class="btn">
+        <a href="/main/mainPage">
+            <button class="main-btn">메인페이지로 이동</button>
+        </a>
+        <a href="/myPage/myPageCs">
+            <button class="my-btn">마이페이지로 이동</button>
+        </a>
+
+    </section>
+</main>
+<footer class="footer" th:replace="fragments/footer :: footer"></footer>
+</body>
+
+</html>

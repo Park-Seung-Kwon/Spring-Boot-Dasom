@@ -1,0 +1,446 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'LINESeedKR-Bd';
+}
+
+main{
+    width: 1515px;
+    margin-top: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.main-section1{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+.main-banner-group{
+    width: 100%;
+    height: 550px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    display: flex;
+}
+.main-banner-tag{
+    width: 1515px;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.main-banner-list{
+    width: 1515px;
+    height: 100%;
+    position: relative;
+    display: flex;
+    float: left;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s ease;
+    left: 0;
+}
+.main-banner-img{
+    width: 1515px;
+    height: 700px;
+}
+.arrow-next,
+.arrow-prev
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 60px;
+    opacity: 0.6;
+    border-radius: 15px;
+    background-color: #fff;
+    font-size: 16px;
+    z-index: 1;
+    cursor: pointer;
+    border: 1px solid rgba(0.1,0.1,0.1,0.1);
+}
+.arrow-next{
+    right: 1%;
+    margin-right: 0.5%;
+    display: block;
+    font-size: 20px;
+}
+.arrow-prev{
+    left: 1%;
+    margin-left: 0.5%;
+    display: none;
+    font-size: 20px;
+}
+.main-total{
+    width: 1240px;
+    height: 140px;
+    background: #fff;
+    border-radius: 90px;
+    -webkit-box-shadow: 0px 30px 40px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 30px 40px 0 rgba(0, 0, 0, 0.1);
+    position:absolute;
+    z-index: 15;
+    top: 88%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+.main-donate-group{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+.main-donate-text{
+    width: 45%;
+    color: #39a14a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main-donate-text2{
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.3;
+}
+.main-donate-money{
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main-section2{
+    margin-top: 150px;
+    width: 1240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.main-poster{
+    width: 100%;
+}
+.main-poster-img{
+    width: 100%;
+    height: 400px;
+    border-radius: 6px;
+}
+.main-poster-btn{
+    position: absolute;
+    left: 5%;
+    top: 10%;
+    z-index: 10;
+    width: 180px;
+    height: 50px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    background-color: #39a14a;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 30px 40px 0 rgba(0, 0, 0, 0.1);
+}
+.main-poster-btn:hover{
+    background-color: #16a729;
+}
+.main-section2-hr,
+.main-section3-hr{
+    width: 1240px;
+    margin-bottom: 30px;
+    margin-top: 50px;
+    opacity: 0.7;
+}
+.main-section3{
+    margin-top: 20px;
+    width: 1240px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+.main-donate-title,
+.main-va-title{
+    width: 100%;
+    font-size: 40px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+.main-donate-subtitle,
+.main-va-subtitle{
+    width: 100%;
+    font-size: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.main-donate-group{
+    width: 100%;
+    display: flex;
+}
+.donate-group{
+    width: 22%;
+    margin-right: 3%;
+}
+.main-donate-tag{
+    text-decoration: none;
+}
+.main-donate-list{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.main-donate-img{
+    width: 100%;
+    height: 270px;
+    border-radius: 6px;
+    margin-bottom: 45px;
+}
+.main-donate-img:hover{
+    -webkit-transform: scale(1.151);
+    -ms-transform: scale(1.151);
+    transform: scale(1.151);
+    border-bottom-right-radius: 30px;
+    -webkit-box-shadow: 0px 40px 50px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 40px 50px 0 rgba(0, 0, 0, 0.25);
+    transition: 0.5s ease;
+}
+.main-donate-tagtext{
+    font-size: 18px;
+    color: #39a14a;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.main-donate-content{
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+.main-section3-hr{
+    margin-bottom: 50px;
+}
+.main-section4{
+    margin-top: 30px;
+    width: 1240px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+}
+.main-va-group{
+    width: 100%;
+    display: flex;
+
+}
+.cs-group{
+    width: 20%;
+    height: 160px;
+    border-radius: 8px;
+    padding: 15px;
+    position: relative;
+    margin-right: 3%;
+    box-shadow: 0 30px 40px 0 rgba(0, 0, 0, 0.1);
+}
+.main-va-tag{
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+.cs-group:hover{
+    box-shadow: 0 30px 40px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+.main-va-list{
+    display: flex;
+    flex-direction: column;
+}
+.main-va-text{
+    font-size: 16px;
+    color: #39a14a;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.main-va-text1{
+    display: flex;
+}
+.main-va-content{
+    max-width: 70%;
+    max-height: 60px;
+    line-height: 30px;
+    font-weight: 500;
+    font-size: 20px;
+    color: #000;
+    margin-bottom: 30px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp: 2;
+    word-break:break-word;
+}
+/*.main-va-content::after {*/
+/*    display: inline-block;*/
+/*}*/
+.main-va-at,
+.main-va-date{
+    display: flex;
+    width: 100%;
+}
+.main-va-attext,
+.main-va-datetext{
+    margin-right: 20px;
+    font-size: 14px;
+    color: #9f9a9a;
+}
+.main-va-atcnt,
+.main-va-datedetail{
+    font-size: 14px;
+    color: #000;
+}
+
+.main-va-status{
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    width: 35px;
+    height: 46px;
+    font-weight: 400;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.13;
+    padding: 12px 15px 0;
+    background: #39b54a;
+    border-radius: 20px 0 20px 0;
+}
+
+/*챗봇*/
+
+/* 채팅 창 */
+.chatbot {
+    display: none; /* 채팅 창을 기본적으로 숨깁니다 */
+    position: fixed;
+    right: 20px;
+    bottom: 80px;
+    width: 300px;
+    height: 500px;
+    z-index: 20;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.chatbot-header {
+    padding: 10px;
+    background-color: #39b54a;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+.close-box {
+    text-align: right;
+}
+.chatbot-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.chatbot-body {
+    height: 78%;
+    padding: 10px;
+    overflow-y: auto; /* 스크롤이 가능하도록 설정 */
+}
+
+.chatbot-footer {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#chatbot-send {
+    margin-left: 10px;
+    padding: 5px;
+    background-color: #39b54a;
+    border: #39b54a 1px solid;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#chatbot-input {
+    height: 28px;
+    padding-left: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.message {
+    /* border: black 1px solid; */
+    margin: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.message-text {
+    margin: 0 10px 0 10px;
+    border: #00c7ae 1px solid;
+    min-height: 30px;
+    line-height: 30px;
+    border-radius: 10px;
+    padding: 3px 5px;
+}
+
+.user-message {
+}
+
+.bot-message {
+    text-align: right;
+    justify-content: right;
+}
+
+.bot-message > .message-text {
+    background-color: #39b54a;
+    color: white;
+}
+.chatbot-button{
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    z-index: 20;
+    width: 50px;
+    height: 40px;
+}

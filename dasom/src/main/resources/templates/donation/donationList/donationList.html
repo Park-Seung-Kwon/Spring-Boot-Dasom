@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/css/donationList.css"/>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <title>후원페이지</title>
+</head>
+
+<body>
+<header class="header" th:replace="fragments/header :: header"/>
+<main>
+    <!-- 상단 이미지 배너 -->
+    <section class="top-banner margin-auto">
+        <div class="banner-img">
+            <img class="banner-img-img" src="/img/가로사진.png" alt=""/>
+        </div>
+        <div class="banner-text flex-center">후원</div>
+    </section>
+
+    <!-- 진행중인캠페인/종료된캠페인 -->
+    <section class="campaign-open-close margin-auto">
+        <div class="campaign open">
+            <div class="campaign-text" id="campaign-ongoing">진행중 캠페인</div>
+            <hr id="hr-on">
+        </div>
+        <div class="campaign close">
+            <div class="campaign-text" id="campaign-end">종료된 캠페인</div>
+            <hr id="hr-end">
+        </div>
+    </section>
+
+    <!-- 게시글 리스트 -->
+    <section class="board-items margin-auto">
+        <!-- 게시글 시작 -->
+
+        <!-- 게시글 끝 -->
+    </section>
+</main>
+<footer class="footer" th:replace="fragments/footer :: footer"></footer>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+<script>
+    let page =1;
+    let status ='1';
+
+    $('.board-item-box-end').on('click', function () {
+        alert("완료된 후원입니다!");
+    });
+    
+    //페이지 진입시 비동기 게시판 구성
+    myModule(status, page, showResult);
+
+    //비동기식 게시판 리스트 출력 함수
+    function myModule(status, page, callback) {
+        $.ajax({
+            url: `/donations/${status}/${page}`,
+            type: 'get',
+            dataType: 'json',
+            success: function (result) {
+                console.log(result);
+                if (callback) {
+                    callback(result);
+                }
+            },
+            error: function (a, b, c) {
+                console.log(c);
+            }
+        });
+    }
+
+    //html에 들어갈 양식
+    function showResult(result) {
+        let text = '';
+
+        result.donateListVoList.forEach(r => {
+            if (r.donatewriteStatus == 1) {
+                text += ` <a href="/donate/payPage?donateWriteNumber=${r.donatewriteNumber}" class="board-a">
+                        <div class="board-item-box">
+                    `;
+            } else {
+                text +=
+                    `<div class="board-item-box-end">`;
+            }
+                text +=
+                    `<div class="box-top">`;
+
+            if (r.donatefileName == null) {
+                text +=
+                    `<div  class="box-top-img" style="background-image: url(https://via.placeholder.com/300x200)"></div>`
+                ;
+            } else {
+                text +=
+                    `<div class="box-top-img" style="background-image: url(/upload/${r.donatefileUploadPath}/th_${r.donatefileUuid}_${r.donatefileName})"></div>`
+                ;
+            }
+            text +=
+                `
+                        <div class="box-top-text flex-center">${r.donatewriteTitle}</div>
+
+                        </div>
+                        <div class="box-bottom-donate">
+                            <div class="bottom-donate-text">후원하기</div>
+                        </div>
+                    </div>
+                </a>
+                    `;
+        });
+        $('.board-items').append(text);
+    }
+
+
+    //진행중 캠페인 클릭
+    $('#campaign-ongoing').on('click', function () {
+        $('.board-items').html('');
+        //버튼 css 조정
+        document.getElementById("hr-end").style.display = "none";
+        document.getElementById("hr-end").style.color = "black";
+        document.getElementById("hr-on").style.display = "";
+        document.getElementById("campaign-ongoing").style.color = "#39b54a";
+        document.getElementById("campaign-end").style.color = "black";
+        status = '1';
+        page=1;
+        myModule(status, page, showResult);
+    });
+
+    //종료된 캠페인 클릭
+    $('#campaign-end').on('click', function () {
+        $('.board-items').html('');
+        //버튼 css 조정
+        document.getElementById("hr-on").style.display = "none";
+        document.getElementById("hr-on").style.color = "black";
+        document.getElementById("hr-end").style.display = "block";
+        document.getElementById("campaign-ongoing").style.color = "black";
+        document.getElementById("campaign-end").style.color = "#39b54a";
+        status = '0';
+        page=1;
+        myModule(status, page, showResult);
+    });
+
+
+    //무한 스크롤 페이징
+    $(window).on('scroll', function (){
+
+        // 현재 브라우저의 스크롤 위치를 의미함
+        console.log(`scrollTop : ${ $(window).scrollTop() }`);
+        // 문서 전체의 높이를 구함
+        console.log(`document : ${ $(document).height() }`);
+        //브라우저 화면의 높이를 구함
+        console.log(`window : ${ $(window).height() }`);
+
+        if(Math.round($(window).scrollTop()) == $(document).height() - $(window).height()){
+            console.log(++page);
+            myModule(status, page, showResult);
+        }
+
+    });
+
+</script>
+
+</body>
+</html>

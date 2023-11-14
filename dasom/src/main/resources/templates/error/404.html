@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>에러 페이지</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" />
+  <style>
+    @font-face {
+      font-family: 'LINESeedKR-Bd';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+    }
+    .error-container {
+      text-align: center;
+      padding: 40px;
+      background-color: #fff;
+      box-shadow: 0 30px 40px 0 rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      width: 60%;
+      margin: 100px auto;
+    }
+    .error-container h2{
+      margin-bottom: 20px;
+      font-size: 35px;
+      font-weight: bold;
+    }
+    .error-container h1 {
+      margin-top: 0;
+      margin-bottom: 24px;
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    .error-container p {
+      margin-bottom: 24px;
+    }
+
+    .error-container a {
+      display: inline-block;
+      padding: 12px 24px;
+      text-decoration: none;
+      background-color: #39b54a;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 4px;
+      margin-right: 12px;
+    }
+
+    .error-container a:hover {
+      background-color: #39a14a;
+    }
+    .error-img{
+      width: 130px;
+      height: 120px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="error-container">
+    <img src="/img/error.png" alt="error" class="error-img">
+    <h2>404 ERROR!!</h2>
+    <h1>잘못된 접근입니다</h1>
+    <p>아래 버튼을 눌러 로그인 페이지나 메인 페이지로 이동하세요</p>
+    <div>
+      <a href="/user/login">로그인</a>
+      <a href="/main/mainPage">메인 페이지</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

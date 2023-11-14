@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+    
+body{
+    font-family: 'LINESeedKR-Bd';
+}
+
+.container{
+    margin: 100px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+h1 {
+    text-align: center;
+}
+
+input[type='text'] {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0 0 20px 0 ;
+}
+
+.login-btn {
+    width: 65%;
+    height: 50px;
+    padding: 10px;
+    background-color: #39b54a;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 20px 0 0 0;
+}
+
+.login-btn:hover {
+    background-color: #16a729;
+}
+
+.form-wrap {
+    width: 600px;
+    margin: 100px auto;
+}
+
+.login-form{
+    text-align: center;
+}
+
+
+

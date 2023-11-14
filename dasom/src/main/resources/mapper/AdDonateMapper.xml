@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dasom.mapper.AdDonateMapper">
+
+    <select id="selectTotal" resultType="_int" parameterType="searchVo">
+        SELECT COUNT(DONATE_NUMBER)
+        FROM (
+        SELECT D.DONATE_NUMBER, W.DONATEWRITE_TITLE, U.USER_ID, U.USER_NAME,
+        D.DONATE_AMOUNT, DONATE_DATE
+        FROM TBL_DONATE D, TBL_USERS U, TBL_DONATEWRITE W
+        WHERE D.DONATEWRITE_NUMBER = W.DONATEWRITE_NUMBER
+        AND U.USER_NUMBER = D.USER_NUMBER
+        )
+        <choose>
+            <when test="'name'.equals(cate)">
+                WHERE USER_NAME LIKE '%' || COALESCE(#{keyword, jdbcType=VARCHAR}, '') || '%'
+            </when>
+            <when test="'id'.equals(cate)">
+                WHERE USER_ID LIKE '%' || COALESCE(#{keyword, jdbcType=VARCHAR}, '') || '%'
+            </when>
+            <when test="'campaign'.equals(cate)">
+                WHERE DONATEWRITE_TITLE LIKE '%' || COALESCE(#{keyword, jdbcType=VARCHAR}, '') || '%'
+            </when>
+        </choose>
+    </select>
+
+    <select id="selectAll" resultType="adDonateVo" parameterType="searchVo">
+        SELECT RNUM , DONATE_NUMBER, DONATEWRITE_TITLE, USER_ID, USER_NAME,
+        DONATE_AMOUNT, TO_CHAR(DONATE_DATE, 'YYYY.MM.DD') AS DONATE_DATE
+        FROM(
+        SELECT ROWNUM AS RNUM,DONATE_NUMBER, DONATEWRITE_TITLE, USER_ID, USER_NAME, DONATE_AMOUNT,
+        DONATE_DATE
+        FROM(
+        SELECT D.DONATE_NUMBER, W.DONATEWRITE_TITLE, U.USER_ID, U.USER_NAME,
+        D.DONATE_AMOUNT, DONATE_DATE
+        FROM TBL_DONATE D, TBL_USERS U, TBL_DONATEWRITE W
+        <choose>
+            <when test="'name'.equals(searchVo.cate)">
+                WHERE D.DONATEWRITE_NUMBER = W.DONATEWRITE_NUMBER
+                AND U.USER_NUMBER = D.USER_NUMBER
+                AND U.USER_NAME LIKE '%' || #{searchVo.keyword} || '%'
+                ORDER BY D.DONATE_NUMBER DESC
+            </when>
+            <when test="'id'.equals(searchVo.cate)">
+                WHERE D.DONATEWRITE_NUMBER = W.DONATEWRITE_NUMBER
+                AND U.USER_NUMBER = D.USER_NUMBER
+                AND U.USER_ID LIKE '%' || #{searchVo.keyword} || '%'
+                ORDER BY D.DONATE_NUMBER DESC
+            </when>
+            <when test="'campaign'.equals(searchVo.cate)">
+                WHERE D.DONATEWRITE_NUMBER = W.DONATEWRITE_NUMBER
+                AND U.USER_NUMBER = D.USER_NUMBER
+                AND W.DONATEWRITE_TITLE LIKE '%' || #{searchVo.keyword} || '%'
+                ORDER BY D.DONATE_NUMBER DESC
+            </when>
+            <otherwise>
+                WHERE D.DONATEWRITE_NUMBER = W.DONATEWRITE_NUMBER
+                AND U.USER_NUMBER = D.USER_NUMBER
+                ORDER BY D.DONATE_NUMBER DESC
+            </otherwise>
+        </choose>
+        )X
+        WHERE
+        <![CDATA[
+          ROWNUM <= #{criteria.page} * #{criteria.amount}
+        ]]>
+        ) Y
+        WHERE  RNUM > (#{criteria.page} - 1) * #{criteria.amount}
+    </select>
+
+    <select id="selectDonate" resultType="donateUserVo">
+        SELECT D.DONATE_NUMBER, U.USER_ID, U.USER_NAME, D.DONATE_AMOUNT,
+               TO_CHAR(D.DONATE_DATE, 'YYYY.MM.DD') AS DONATE_DATE
+        FROM TBL_DONATE D JOIN TBL_USERS U
+                ON D.USER_NUMBER = U.USER_NUMBER
+        WHERE D.DONATEWRITE_NUMBER = ${donateWriteNumber}
+    </select>
+
+    <select id="donateAmount" resultType="_int">
+        SELECT COALESCE(SUM(DONATE_AMOUNT), 0)
+        FROM TBL_DONATE
+        WHERE DONATEWRITE_NUMBER = ${donateWriteNumber}
+    </select>
+
+</mapper>

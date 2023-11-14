@@ -1,0 +1,231 @@
+@font-face {
+  font-family: "LINESeedKR-Bd";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+* {
+  font-family: "LINESeedKR-Bd";
+  margin: 0;
+  padding: 0;
+}
+/* 전체컨테이너 */
+.container {
+  width: 1240px;
+  height: 1340px;
+  display: flex;
+  margin: auto;
+}
+/* 좌측 어사이드 */
+aside {
+  height: 100%;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+aside section {
+  width: 170px;
+  height: 50px;
+  margin-top: 40px;
+  background-color: #39b54a;
+  border-radius: 6px;
+}
+aside section:hover {
+  background-color: #16a729;
+}
+aside a {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+aside div {
+  font-weight: bold;
+  font-size: 17px;
+  color: white;
+}
+.aside-spacing {
+  width: 100%;
+  height: 220px;
+  margin-top: 40px;
+  background-color: white;
+}
+.block {
+  background-color: #16a729;
+}
+
+/* 우측 게시글 목록 창 */
+main {
+  height: 100%;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+}
+
+/*  카테고리 & 글쓰기 창 */
+.section-top {
+  width: 100%;
+  height: 200px;
+  display: flex;
+}
+/* 카테고리명 - 회원관리 */
+.section-top-category-name {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  /* background-color: pink; */
+}
+.section-top-category-name-text {
+  font-weight: bold;
+  font-size: 28px;
+}
+
+/* 검색바 */
+.section-search {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-form {
+  width: 90%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.search-dropdown {
+  width: 15%;
+  height: 95%;
+  border: 1px #39b54a solid;
+  border-radius: 6px;
+  margin-right: 5px;
+}
+
+.search-bar {
+  width: 70%;
+  height: 95%;
+  border: 1px #39b54a solid;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.search-button {
+  height: 100%;
+  width: 15%;
+  background-color: #39b54a;
+  border: 1px #39b54a solid;
+  font-size: 14px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  font-weight: bold;
+  color: white;
+}
+
+/* 회원 목록 */
+.section-board {
+  width: 100%;
+  /* height: 940px; */
+  display: flex;
+  flex-direction: column;
+}
+.section-board-top,
+.section-board-bottom,
+.section-board-bottom2 {
+  width: 100%;
+  height: 89px;
+  display: flex;
+  background-color: #f4f4f4;
+}
+.section-board-top {
+  font-weight: bold;
+  height: 50px;
+  background-color: #39b54a;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.section-board-top .member-num {
+  border-top-left-radius: 6px;
+}
+.section-board-top .empty {
+  border-top-right-radius: 6px;
+}
+
+.section-board-bottom2 {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.section-board-bottom2 .member-num {
+  border-bottom-left-radius: 6px;
+}
+.section-board-bottom2 .execute {
+  border-bottom-right-radius: 6px;
+}
+
+/* 회원정보 컬럼항목 */
+.member-num,
+.campaign,
+.name,
+.id,
+.birth,
+.amount,
+.amount-date {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid black; */
+  font-size: 13px;
+}
+
+/* 회원번호 */
+.member-num {
+  width: 10%;
+}
+/* 캠페인 */
+.campaign {
+  width: 25%;
+}
+/* 이름 */
+.name {
+  width: 20%;
+}
+/* 아이디 */
+.id {
+  width: 20%;
+}
+/* 후원금액 */
+.amount {
+  width: 20%;
+}
+/* 후원일자 */
+.amount-date {
+  width: 10%;
+}
+
+/* 페이징 */
+.section-paging {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.paging-inner {
+  width: 70%;
+  height: 70%;
+  border: 1px black solid;
+}

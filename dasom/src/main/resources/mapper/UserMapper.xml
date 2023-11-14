@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dasom.mapper.UserMapper">
+
+    <!--이우진 아이디찾기-->
+    <select id="findUserId" parameterType="UserDto" resultType="UserDto">
+        select *
+        from tbl_users
+        where user_name = #{userName}
+          and user_Phone = #{userPhone}
+          and user_Birth_Year = #{userBirthYear}
+          and user_Birth_Month = #{userBirthMonth}
+          and user_Birth_Day = #{userBirthDay}
+    </select>
+    <!--이우진 비밀번호찾기-->
+    <select id="findUserPassword" parameterType="UserDto" resultType="Long">
+        select user_number
+        from tbl_users
+        where user_id = #{userId}
+          and user_name = #{userName}
+          and user_Phone = #{userPhone}
+    </select>
+
+    <!-- 이우진 내비밀번호 수정  -->
+    <update id="userPasswordUpdate" parameterType="UserDto">
+        update TBL_USERS
+        set user_password = #{userPassword}
+        where user_number = ${userNumber}
+    </update>
+
+
+    <!--나예은 회원가입-->
+    <insert id="insert">
+        insert into TBL_USERS (USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_BIRTH_YEAR, USER_BIRTH_MONTH,
+                               USER_BIRTH_DAY, USER_PHONE, USER_EMAIL, USER_GENDER, USER_POST_CODE, USER_ADDR,
+                               USER_ADDR_EXTRA,
+                               USER_ADDR_DETAIL)
+        values (seq_users.nextval, #{userId}, #{userPassword}, #{userName}, #{userBirthYear}, #{userBirthMonth},
+                #{userBirthDay}, #{userPhone}, #{userEmail}, #{userGender}, #{userPostCode}, #{userAddr},
+                #{userAddExtra}, #{userAddDetail})
+    </insert>
+
+    <!--나예은 로그인-->
+    <select id="select" resultType="userDto">
+        select user_number, user_id, user_name
+        from tbl_users
+        where user_id = #{userId}
+          and user_password = #{userPassword}
+    </select>
+
+    <!--나예은 아이디 중복확인-->
+    <select id="checkId" resultType="_int">
+        SELECT COUNT(user_id)
+        FROM tbl_users
+        where user_id = #{userId}
+    </select>
+
+<!--  이우진 내후원리스트 건  -->
+    <select id="donateUserSelectAllCount" resultType="Long">
+        SELECT COUNT(*) AS donate_count
+        FROM TBL_DONATE
+                 INNER JOIN TBL_DONATEWRITE ON TBL_DONATE.donatewrite_number = TBL_DONATEWRITE.donatewrite_number
+        WHERE TBL_DONATE.user_number = #{userNumber}
+    </select>
+<!--  이우진 내후원리스트 금액 총합  -->
+    <select id="donateUserSelectAllAmount" resultType="String">
+        SELECT TO_CHAR(SUM(donate_amount), '999,999,999') AS total_donate_amount
+        FROM TBL_DONATE
+                 INNER JOIN TBL_DONATEWRITE ON TBL_DONATE.donatewrite_number = TBL_DONATEWRITE.donatewrite_number
+        WHERE TBL_DONATE.user_number = #{userNumber}
+    </select>
+    <!-- 이우진 내후원리스트   -->
+    <select id="donateUserSelectAll" resultType="UserVo">
+        SELECT donate_number,
+               TBL_DONATE.user_number,
+               TBL_DONATEWRITE.donatewrite_title,
+               donate_amount,
+               TO_CHAR(TO_DATE(donate_date, 'YYYY-MM-DD'), 'YY-MM-DD') AS donate_date
+        FROM TBL_DONATE
+                 INNER JOIN TBL_DONATEWRITE ON TBL_DONATE.donatewrite_number = TBL_DONATEWRITE.donatewrite_number
+        where TBL_DONATE.user_number = ${userNumber}
+        order by donate_number desc
+    </select>
+    <!-- 이우진 나의 참여 리스트   -->
+    <select id="csUserSelectAll" resultType="UserVo">
+        SELECT cs_number,
+               TBL_CS.user_number, TBL_CSWRITE.CSwrite_number,
+               TBL_CSWRITE.CSwrite_title,
+               TO_CHAR(TO_DATE(TBL_CS.cs_apply_date, 'YYYY-MM-DD'), 'YY-MM-DD') AS cs_Apply_Date,
+               TO_CHAR(TO_DATE(csWrite_Act_Start, 'YYYY-MM-DD'), 'YY-MM-DD') AS csWrite_Act_Start,
+               TO_CHAR(TO_DATE(csWrite_Act_END, 'YYYY-MM-DD'), 'YY-MM-DD')   AS csWrite_Act_END,
+               csWrite_Status
+        FROM TBL_CS
+                 INNER JOIN TBL_CSWRITE ON TBL_CS.CSwrite_number = TBL_CSWRITE.CSwrite_number
+        where TBL_CS.user_number = ${userNumber}
+        order by cs_number desc
+    </select>
+    <!-- 이우진 내정보   -->
+    <select id="userSelect" resultType="UserDto">
+        SELECT USER_NUMBER,
+               USER_ID,
+               USER_PASSWORD,
+               USER_NAME,
+               USER_BIRTH_YEAR,
+               USER_BIRTH_MONTH,
+               USER_BIRTH_DAY,
+               USER_PHONE,
+               USER_EMAIL,
+               USER_GENDER,
+               USER_POST_CODE,
+               USER_ADDR,
+               USER_ADDR_EXTRA                      as USER_ADD_EXTRA,
+               USER_ADDR_DETAIL                     as USER_ADD_DETAIL,
+               TO_CHAR(USER_JOINDATE, 'YYYY.MM.DD') AS USER_JOINDATE
+        FROM TBL_USERS
+        where user_number = ${userNumber}
+    </select>
+    <!-- 이우진 내정보 수정  -->
+    <update id="userUpdate" parameterType="UserDto">
+        update TBL_USERS
+        set user_email       = #{userEmail},
+            user_phone       = #{userPhone},
+            user_post_code   = #{userPostCode},
+            user_addr        = #{userAddr},
+            user_addr_extra  = #{userAddExtra},
+            user_addr_detail = #{userAddDetail}
+        where user_number = ${userNumber}
+    </update>
+
+    <!-- 이우진 회원탈퇴  -->
+    <delete id="userDelete" parameterType="UserDto">
+        delete
+        from TBL_USERS
+        where user_number = ${userNumber}
+    </delete>
+
+</mapper>

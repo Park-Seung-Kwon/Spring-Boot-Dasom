@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>봉사 글 관리</title>
+    <link rel="stylesheet" href="/resource/css/arrow.css" />
+    <link rel="stylesheet" href="/resource/css/button.css" />
+    <link rel="stylesheet" href="/resource/css/adCs.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- 좌측 어사이드 -->
+      <aside>
+        <div class="aside-spacing"></div>
+        <section class="">
+          <a class="member-a" href="/admin/adUser">
+            <div class="member-text">회원관리</div>
+          </a>
+        </section>
+        <section class="board-mate">
+          <a class="board-mate-a" href="/admin/adDonationList">
+            <div class="board-mate-text">후원금리스트</div>
+          </a>
+        </section>
+        <section class="">
+          <a class="board-free-a" href="/admin/adDonation">
+            <div class="board-free-text">후원 글 관리</div>
+          </a>
+        </section>
+        <section class="member">
+          <a class="board-qna-a" href="/admin/adCs">
+            <div class="board-qna-text">봉사 글 관리</div>
+          </a>
+        </section>
+      </aside>
+
+      <!-- 우측 게시글 목록 창 -->
+      <main>
+        <!-- 카테고리 & 글쓰기 창 -->
+        <section class="section-top">
+          <!-- 카테고리명 - 회원관리 -->
+          <div class="section-top-category-name">
+            <div class="section-top-category-name-text">봉사 글 관리</div>
+          </div>
+          <!-- 글쓰기버튼 -->
+          <div class="section-top-write">
+              <button onclick="location.href='/csWrite/write'" class="button-write">글쓰기</button>
+          </div>
+        </section>
+
+        <!-- 검색바 -->
+        <section class="section-search">
+          <form class="search-form" action="/admin/adCs">
+            <div class="search-inner">
+              <select class="search-dropdown" name="cate">
+                <option value="campaign">캠페인명</option>
+              </select>
+              <input class="search-bar" type="text" name="keyword" th:value="${param.keyword}"/>
+              <button class="search-button" type="submit">검색</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- 회원 목록 -->
+        <section class="section-board">
+          <!-- 회원목록 컬럼 값 -->
+          <div class="section-board-top">
+            <div class="num">번호</div>
+            <div class="campaign">캠페인명</div>
+            <div class="recruitDate">모집기간</div>
+            <div class="manager">담당자</div>
+            <div class="managerPhone">담당자 번호</div>
+            <div class="writeDate">작성일자</div>
+            <div class="state">상태</div>
+            <div class="empty"></div>
+            <div class="empty"></div>
+          </div>
+
+          <!-- 회원목록 데이터값 -->
+          <div class="section-board-bottom" th:each="cs : ${csWriteList}">
+            <div class="num" th:text="${cs.csWriteNumber}">1</div>
+            <div class="campaign" th:text="${cs.csWriteTitle}">캠페인명</div>
+            <div class="recruitDate" th:text="${cs.csWriteRecruitStart}+'~'+${cs.csWriteRecruitEnd}">모집기간</div>
+            <div class="manager" th:text="${cs.csWriteManager}">담당자</div>
+            <div class="managerPhone" th:text="${cs.csWritePhone}">담당자 번호</div>
+            <div class="writeDate" th:text="${cs.csWriteDate}">23.09.13</div>
+            <div class="state" th:text="${cs.csWriteStatus == '1' ? '모집중' : '모집완료'}"></div>
+            <div class="execute">
+              <button class="btngreen1" th:onclick="|location.href='@{/csWrite/modify(csWriteNumber=${cs.csWriteNumber})}'|">수정</button>
+            </div>
+            <div class="execute">
+              <button class="btnred1" th:attr="data-csWriteNumber=${cs.csWriteNumber}"
+                      onclick="deleteCs(this.getAttribute('data-csWriteNumber'))">삭제</button>
+            </div>
+            <div class="execute"
+                 th:onclick="|location.href='@{/csWrite/recruit(csWriteNumber=${cs.csWriteNumber})}'|"
+                 th:if="${cs.csWriteStatus == '1'}">
+              <button th:attr="data-csWriteNumber=${cs.csWriteNumber}"
+                      onclick="recruitCs(this.getAttribute('data-csWriteNumber'))"
+                      class="btngray1">마감</button>
+            </div>
+          </div>
+          <div class="noResult-text" th:if="${#lists.isEmpty(csWriteList)}">
+            <h3>일치하는 검색결과가 없습니다</h3>
+          </div>
+
+        </section>
+      <!-- 페이징  -->
+      <section class="section-paging">
+        <div class="page_wrap">
+          <div class="page_nation">
+            <!-- 이전 페이지 링크 -->
+            <a th:href="@{/admin/adCs(page=${pageInfo.startPage-1}, keyword=${param.keyword})}"
+               class="arrow prev" th:if="${pageInfo.prev}">&lt;</a>
+
+            <!-- 페이지 번호 순환 출력 -->
+            <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+              <a th:href="@{/admin/adCs(page=${i}, keyword=${param.keyword})}" class="active"
+                 th:text="${i}" th:if="${i != pageInfo.criteria.page}"></a>
+              <a th:href="@{/admin/adCs(page=${i}, keyword=${param.keyword})}" class="active"
+                 th:text="${i}" th:unless="${i != pageInfo.criteria.page}"></a>
+            </th:block>
+
+            <!-- 다음 페이지 링크 -->
+            <a th:href="@{/admin/adCs(page=${pageInfo.endPage+1}, keyword=${param.keyword})}"
+               class="arrow next" th:if="${pageInfo.next}">&gt;</a>
+          </div>
+        </div>
+      </section>
+      </main>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script defer src="/js/adCs.js"></script>
+  </body>
+</html>

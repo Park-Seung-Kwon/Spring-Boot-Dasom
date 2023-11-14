@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/adModifyDonation.css" />
+</head>
+<body>
+
+    <!-- out:container -->
+    <div class="container">
+      <h3 class="title">관리자 | 후원 글 수정</h3>
+      <!-- form -->
+      <div class="form-wrap">
+        <form class="new-post-form" action="/donateWrite/modify" method="post" enctype="multipart/form-data">
+<!--            <input type="hidden" th:value="${donate.donateWriteNumber}" name="donateWriteNumber"/>-->
+            <!-- title -->
+          <div class="form-group">
+            <label for="post-title">제목</label>
+            <input type="text" id="post-title" name="donateWriteTitle" th:value="${donate.donateWriteTitle}" required />
+          </div>
+          <!-- img -->
+          <div class="form-group">
+            <ul class="file-wrap">
+              <li>
+                <input type="file" id="post-image" name="donateWriteFile" accept="image/*" />
+              </li>
+              <li class="img-list"></li>
+                <div class="post-images">
+                    <!-- 이미지 예시 -->
+                    <img src="" alt="첨부 이미지 1" class="post-image" />
+                    <!-- /이미지 예시 -->
+                </div>
+
+                <input type="hidden" th:value="${donate.donateWriteNumber}" name="donateWriteNumber" class="board-num">
+            </ul>
+          </div>
+
+            <div class="big-img-wrap">
+                <div class="big-img-box">
+                    <img src="" alt="" class="big-img">
+                </div>
+            </div>
+
+          <!-- btn -->
+          <div class ="btn">
+          <button type="button" onclick="location.href='/admin/adDonation'" class="back-btn">뒤로 가기</button>
+          <button type="submit" class="submit-btn">수정 완료</button>
+        </div>
+        </form>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script src="/js/adModifyDonation.js"></script>
+    
+    
+</body>
+</html>

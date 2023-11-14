@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../resource/css/adWriteFund.css" />
+</head>
+<body>
+    <!-- header -->
+    <header class="header" th:replace="fragments/header :: header">
+    </header>
+    <!-- out:container -->
+    <div class="container">
+      <h3 class="title">관리자 | 후원 글 작성</h3>
+      <!-- form -->
+      <div class="form-wrap">
+        <form class="new-post-form" action="" method="post" enctype="multipart/form-data">
+            <!-- title -->
+          <div class="form-group">
+            <label for="post-title">제목</label>
+            <input type="text" id="post-title" name="boardTitle" required />
+          </div>
+          <!-- img -->
+          <div class="form-group">
+            <ul class="file-wrap">
+              <li>
+                <input type="file" id="post-image" name="boardFile" accept="image/*" multiple />
+              </li>
+              <li class="img-list"></li>
+            </ul>
+          </div>
+          <!-- btn -->
+          <div class ="btn">
+          <button type="submit" class="back-btn">뒤로 가기</button>
+          <button type="submit" class="submit-btn">게시물 작성</button>
+        </div>
+        </form>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script src="/js/board/boardWrite.js"></script>
+    
+    
+</body>
+</html>

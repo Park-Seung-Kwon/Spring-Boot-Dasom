@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dasom.mapper.AdCsMapper">
+    <select id="selectCsUser" resultType="csUserVo">
+        SELECT U.USER_NUMBER, U.USER_ID, U.USER_NAME, U.USER_PHONE, U.USER_EMAIL,
+               TO_CHAR(C.CS_APPLY_DATE, 'YYYY.MM.DD') AS CS_APPLY_DATE
+        FROM TBL_CSWRITE W, TBL_USERS U, TBL_CS C
+        WHERE U.USER_NUMBER = C.USER_NUMBER
+          AND W.CSWRITE_NUMBER = C.CSWRITE_NUMBER
+          AND W.CSWRITE_NUMBER = ${csWriteNumber}
+    </select>
+</mapper>

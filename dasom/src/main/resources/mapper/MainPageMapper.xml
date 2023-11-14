@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dasom.mapper.MainPageMapper">
+    <select id="selectDonate" resultType="donateWriteVo">
+        SELECT W.DONATEWRITE_NUMBER, ADMIN_NUMBER, DONATEWRITE_TITLE,
+               DONATEWRITE_STATUS, DONATEFILE_NUMBER,
+               DONATEFILE_NAME, DONATEFILE_UPLOAD_PATH, DONATEFILE_UUID
+        FROM TBL_DONATEWRITE W JOIN TBL_DONATEFILE F
+                                    ON W.DONATEWRITE_NUMBER = F.DONATEWRITE_NUMBER
+        WHERE W.DONATEWRITE_STATUS = '1'
+    </select>
+
+    <select id="selectCs" resultType="csWriteDto">
+        SELECT CSWRITE_NUMBER, ADMIN_NUMBER, CSWRITE_TITLE,
+               TO_CHAR(TO_DATE(CSWRITE_RECRUIT_START, 'YYYY-MM-DD'), 'YYYY.MM.DD') AS CSWRITE_RECRUIT_START,
+               TO_CHAR(TO_DATE(CSWRITE_RECRUIT_END, 'YYYY-MM-DD'), 'YYYY.MM.DD') AS CSWRITE_RECRUIT_END,
+               CSWRITE_COUNT, CSWRITE_PLACE,
+               TO_CHAR(TO_DATE(CSWRITE_ACT_START, 'YYYY-MM-DD'), 'YYYY.MM.DD') AS CSWRITE_ACT_START,
+               TO_CHAR(TO_DATE(CSWRITE_ACT_END, 'YYYY-MM-DD'), 'YYYY.MM.DD') AS CSWRITE_ACT_END,
+               CSWRITE_STATUS,
+               TO_CHAR(CSWRITE_DATE, 'YYYY.MM.DD') AS CSWRITE_DATE,
+               CSWRITE_MANAGER,
+               CSWRITE_PHONE
+        FROM TBL_CSWRITE
+        WHERE CSWRITE_STATUS = '1'
+    </select>
+
+    <select id="selectAmount" resultType="_int">
+        SELECT COALESCE(SUM(DONATE_AMOUNT), 0)
+        FROM TBL_DONATE
+    </select>
+
+
+</mapper>
