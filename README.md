@@ -18,7 +18,7 @@
   - [ERD구성](#erd구성)
   - [Tools](#tools)
   - [나의 작업](#나의-작업)
-    - [산책 게시판 글 작성 및 수정  기능소개 WIKI로 이동](#산책-게시판-글-작성-및-수정--기능소개-wiki로-이동)
+    - [후원 모집 리스트 기능소개 WIKI로 이동](####후원-모집-리스트-기능소개-WIKI로-이동)
     - [산책 게시판 리스트 기능소개 WIKI로 이동](#산책-게시판-리스트-기능소개-wiki로-이동)
     - [산책 게시판 글 보기 기능소개 WIKI로 이동](#산책-게시판-글-보기-기능소개-wiki로-이동)
     - [산책 게시판 댓글 기능소개 WIKI로 이동](#산책-게시판-댓글-기능소개-wiki로-이동)
@@ -55,7 +55,7 @@
 
 ### 후원 게시판   
 
-#### 후원 모집 리스트   
+#### 후원 모집 리스트 [기능소개 WIKI로 이동](www.naver.com)   
 - 리스트에 보여줄 내용 불러오기 (비동기)   
 - 진행중 캠페인/ 종료된 캠페인 구분하여 표시 (비동기)   
 - 무한 스크롤 페이징 처리 (비동기)   
@@ -104,7 +104,7 @@
 <img src="https://github.com/Park-Seung-Kwon/Spring-Boot-Dasom/assets/112665201/d671975c-dbad-4a60-b822-a03a20423440.gif" width="500">
 <br>   
 
-### Intercepter   
+### Interceptor   
 <img src="https://github.com/Park-Seung-Kwon/Spring-Boot-Dasom/assets/112665201/ed3fc747-034a-45c5-8014-b618550494cf.gif" width="500">
    
 
