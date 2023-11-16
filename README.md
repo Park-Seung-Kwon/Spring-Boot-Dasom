@@ -71,7 +71,7 @@
 - 금액을 입력하여 입력한 금액만큼 후원 결제   
 - 카카오페이 API이용 결제(비동기)
 - 후원자 이름 불러와 감사 인사 출력
-- 메인페이지/ 마이페이지 후원 내역페이지로 이동가능한 버튼 배치
+- 메인페이지/ 마이페이지 후원 내역 페이지로 이동 가능한 버튼 배치
    
 카카오페이 결제   
 <img src="https://github.com/Park-Seung-Kwon/Spring-Boot-Dasom/assets/112665201/0342df47-d225-4499-ba82-66370127ea20.gif" width="500">   
@@ -96,7 +96,13 @@
 
 이미 신청한 봉사   
 <img src="https://github.com/Park-Seung-Kwon/Spring-Boot-Dasom/assets/112665201/5650a503-34f4-449a-a12f-46d0dddfe41a.gif" width="500">
-    
+<br>
+
+#### 봉사 신청 상세보기   
+- 봉사 신청자 이름 불러와 감사 인사 출력   
+- 메인페이지/ 마이페이지 봉사 신청 내역 페이지로 이동 가능한 버튼 배치   
+<img src="https://github.com/Park-Seung-Kwon/Spring-Boot-Dasom/assets/112665201/d671975c-dbad-4a60-b822-a03a20423440.gif" width="500">
+<br>   
 
 ### Intercepter   
 <img src="https://github.com/Park-Seung-Kwon/Spring-Boot-Dasom/assets/112665201/ed3fc747-034a-45c5-8014-b618550494cf.gif" width="500">
