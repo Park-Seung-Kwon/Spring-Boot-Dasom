@@ -62,6 +62,7 @@
 
 진행중 캠페인/ 종료된 캠페인   
 <img src="https://github.com/Park-Seung-Kwon/Spring-Boot-Dasom/assets/112665201/0c9e52b6-291f-481e-9fec-a492e39cc1f8.gif" width="500">   
+<br>
 무한 스크롤 페이징    
 <img src="https://github.com/Park-Seung-Kwon/Spring-Boot-Dasom/assets/112665201/1a76a139-f9c0-4aa5-8333-d6cce319b017.gif" width="500">     
     
@@ -87,7 +88,15 @@
 - 캠페인 정보 불러와 출력
 - 첨부한 캠페인 포스터 이미지 출력
 - 봉사 참여 버튼 클릭하여 봉사 참여 신청
+- 이미 신청한 봉사 중복 체크
+  
 <img src="https://github.com/Park-Seung-Kwon/Spring-Boot-Dasom/assets/112665201/e9da0b14-b77d-4c14-adad-dccfc338ed35.gif" width="500">   
+<br>
+<br>
+
+이미 신청한 봉사   
+<img src="https://github.com/Park-Seung-Kwon/Spring-Boot-Dasom/assets/112665201/5650a503-34f4-449a-a12f-46d0dddfe41a.gif" width="500">
+    
 
 ### Intercepter   
 <img src="https://github.com/Park-Seung-Kwon/Spring-Boot-Dasom/assets/112665201/ed3fc747-034a-45c5-8014-b618550494cf.gif" width="500">
