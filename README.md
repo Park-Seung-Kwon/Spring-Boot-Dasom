@@ -93,7 +93,7 @@
 <br>
 <br>
 
-#### 봉사 게시 상세보기 [기능소개 WIKI로 이동](https://github.com/Park-Seung-Kwon/Spring-Boot-Dasom/wiki/%EB%B4%89%EC%82%AC-%EA%B2%8C%EC%8B%9C%ED%8C%90-%EC%83%81%EC%84%B8-%ED%8E%98%EC%9D%B4%EC%A7%80)   
+#### 봉사 게시판 상세보기 [기능소개 WIKI로 이동](https://github.com/Park-Seung-Kwon/Spring-Boot-Dasom/wiki/%EB%B4%89%EC%82%AC-%EA%B2%8C%EC%8B%9C%ED%8C%90-%EC%83%81%EC%84%B8-%ED%8E%98%EC%9D%B4%EC%A7%80)   
 - 캠페인 정보 불러와 출력
 - 첨부한 캠페인 포스터 이미지 출력
 - 봉사 참여 버튼 클릭하여 봉사 참여 신청
