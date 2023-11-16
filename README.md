@@ -82,7 +82,8 @@
 - 메인페이지/ 마이페이지 후원 내역 페이지로 이동 가능한 버튼 배치
 <img src="https://github.com/Park-Seung-Kwon/Spring-Boot-Dasom/assets/112665201/20c8b4f4-05d0-4173-afd3-25ee8853f9f5.gif" width="500">
 <br>
-
+<br>
+   
 ### 봉사 게시판   
     
 #### 봉사 게시판 리스트 [기능소개 WIKI로 이동](https://github.com/Park-Seung-Kwon/Spring-Boot-Dasom/wiki/%EB%B4%89%EC%82%AC-%EA%B2%8C%EC%8B%9C%ED%8C%90-%EB%A6%AC%EC%8A%A4%ED%8A%B8)    
