@@ -120,5 +120,4 @@
 - 후원/봉사 게시물 열람 시 로그인 여부 확인
   
 <img src="https://github.com/Park-Seung-Kwon/Spring-Boot-Dasom/assets/112665201/ed3fc747-034a-45c5-8014-b618550494cf.gif" width="500">
-   
 
